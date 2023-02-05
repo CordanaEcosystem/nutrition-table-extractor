@@ -10,6 +10,7 @@ from process import *
 from regex import *
 from nutrient_list import *
 from spacial_map import *
+from matplotlib import pyplot as plt 
 
 def load_model():
     """
@@ -51,7 +52,7 @@ def detect(img_path, debug):
     cropped_image = crop(image, coords, "./data/result/output.jpg", 0, True)
 
     #Apply several filters to the image for better results in OCR
-    cropped_image = preprocess_for_ocr(cropped_image, 3)
+    cropped_image = preprocess_for_ocr(cropped_image, 7)
 
     if debug:
         cv2.imwrite('./data/result/output-opt.png', cropped_image)
@@ -72,9 +73,15 @@ def detect(img_path, debug):
     for blob_cord in text_blob_list:
         if debug:
             counter+=1
-            word_image = crop(cropped_image, blob_cord, "./data/result/{}.jpg".format(counter), 0.005, True)
+            word_image = crop(cropped_image, blob_cord, "./data/result/{}.jpg".format(counter), 0, True)
         else:
-            word_image = crop(cropped_image, blob_cord, "./", 0.005, False)
+            word_image = crop(cropped_image, blob_cord, "./", 0, False)
+            
+        _,coord_y,_ = np.shape(word_image)
+        
+        if coord_y==0:
+            continue
+        
         word_image = preprocess_for_ocr(word_image)
         if (word_image.shape[1]>0 and word_image.shape[0]>0):
             text = ocr(word_image,1,7)

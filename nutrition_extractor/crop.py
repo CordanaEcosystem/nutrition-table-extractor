@@ -14,15 +14,15 @@ def crop(image_obj, coords, saved_location, extend_ratio=0, SAVE=False):
     ny = image_obj.shape[0]
 
     modified_coords = (
-        int(coords[0]-extend_ratio*nx), 
-        int(coords[1]-extend_ratio*ny), 
-        int(coords[2]+extend_ratio*nx), 
-        int(coords[3]+extend_ratio*ny)
+        int(coords[0]), 
+        int(coords[1]), 
+        int(coords[2]), 
+        int(coords[3])
     )
-    # cropped_image = image_obj.crop(modified_coords)
     cropped_image = image_obj[modified_coords[1]:modified_coords[3], modified_coords[0]:modified_coords[2]]
-
+    
     if(SAVE):
+        print(saved_location)
         cv2.imwrite(saved_location, cropped_image)
 
 

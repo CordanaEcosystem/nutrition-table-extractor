@@ -23,7 +23,7 @@ def preprocess_for_ocr(img, enhance=1):
 
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    #img = cv2.GaussianBlur(img, (5,5), 0)
+    img = cv2.GaussianBlur(img, (5,5), 0)
 
     img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
 
@@ -42,8 +42,8 @@ def ocr(img, oem=1, psm=3):
         text = pytesseract.image_to_string(img, config=config)
 
         return text
-    except:
-
+    except Exception(e):
+        print(e)
         return ""
 
 

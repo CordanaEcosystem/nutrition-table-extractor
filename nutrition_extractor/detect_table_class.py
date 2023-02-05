@@ -1,6 +1,6 @@
-import tensorflow as tf
 import numpy as np
-
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 class NutritionTableDetector(object):
     def __init__(self):
         PATH_TO_MODEL = 'data/frozen_inference_graph.pb'
