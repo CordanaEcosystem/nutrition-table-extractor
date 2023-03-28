@@ -1,0 +1,519 @@
+Weights Loaded!
+Text Weights Loaded!
+Time taken to detect the table: 0.56622s
+./data/result/output.jpg
+./data/result/second-input.jpg
+Time Taken to detect bounding boxes for text: 2.99133s
+./data/result/1.jpg
+150
+
+./data/result/2.jpg
+8%
+
+./data/result/3.jpg
+Sugars 9g
+
+./data/result/4.jpg
+9%
+
+./data/result/5.jpg
+Facts
+
+./data/result/6.jpg
+Soluble Fiber less than 1g
+
+./data/result/7.jpg
+Serving Size % cup (28g)
+
+./data/result/8.jpg
+Dietary Fiber 2g
+
+./data/result/9.jpg
+with %
+
+./data/result/10.jpg
+9%
+
+./data/result/11.jpg
+%
+
+./data/result/12.jpg
+9%
+
+./data/result/13.jpg
+Servings Per Container about 22
+
+./data/result/14.jpg
+O%
+
+./data/result/15.jpg
+Saturated Fat 0g
+
+./data/result/16.jpg
+1Sodium 160mg
+
+./data/result/17.jpg
+‘Calories
+
+./data/result/18.jpg
+| Per Serving
+
+./data/result/19.jpg
+i Cholesterol Omg
+
+./data/result/20.jpg
+| Total
+
+./data/result/21.jpg
+i Carbohydrate 229
+
+./data/result/22.jpg
+Calories from Fat
+
+./data/result/23.jpg
+Cheerios
+
+./data/result/24.jpg
+| Amount |
+
+./data/result/25.jpg
+15
+
+./data/result/26.jpg
+| Total Fat 1.59°
+
+./data/result/27.jpg
+Monounsaturated Fat 0.5g
+
+./data/result/28.jpg
+i Potassium 115mg
+
+./data/result/29.jpg
+Nutrition
+
+./data/result/30.jpg
+2%
+
+./data/result/31.jpg
+Oo%
+
+./data/result/32.jpg
+110
+
+./data/result/33.jpg
+milk
+
+./data/result/34.jpg
+Polyunsaturated Fat 0.59
+
+./data/result/35.jpg
+3%
+
+./data/result/36.jpg
+2%
+
+./data/result/37.jpg
+| Protein 20
+
+./data/result/38.jpg
+% Dally Value**
+
+./data/result/39.jpg
+15
+
+./data/result/40.jpg
+Other Carbohydrate 11g
+
+./data/result/41.jpg
+8%
+
+./data/result/42.jpg
+7%
+
+./data/result/43.jpg
+7%
+
+./data/result/44.jpg
+Trans Fat Oa
+
+./data/result/45.jpg
+honey Nut cup skim
+
+./data/result/46.jpg
+0%
+
+fuz_check_for_label : Sugars 9g
+get_fuz_label_from_string : Sugars 9g
+['9g']
+fuz_check_for_label : Soluble Fiber less than 1g
+get_fuz_label_from_string : Soluble Fiber less than 1g
+['1g']
+fuz_check_for_label : Serving Size % cup (28g)
+fuz_check_for_label : Dietary Fiber 2g
+get_fuz_label_from_string : Dietary Fiber 2g
+['2g']
+fuz_check_for_label : %
+ 0%
+fuz_check_for_label : Servings Per Container about 22
+fuz_check_for_label : Saturated Fat 0g
+get_fuz_label_from_string : Saturated Fat 0g
+['0g']
+fuz_check_for_label : 1Sodium 160mg
+get_fuz_label_from_string : 1Sodium 160mg
+['1', '160mg']
+fuz_check_for_label : ‘Calories
+ 150
+ 110
+get_fuz_label_from_string : ‘Calories
+ 150
+ 110
+['150', '110']
+fuz_check_for_label : i Cholesterol 0mg
+ 0%
+get_fuz_label_from_string : i Cholesterol 0mg
+ 0%
+['0mg', '0%']
+fuz_check_for_label : i Carbohydrate 22g
+get_fuz_label_from_string : i Carbohydrate 22g
+['22g']
+fuz_check_for_label : Calories from Fat
+ 15
+ 15
+get_fuz_label_from_string : Calories from Fat
+ 15
+ 15
+['15', '15']
+fuz_check_for_label : Total Fat 1.59°
+get_fuz_label_from_string : Total Fat 1.59°
+['1.59']
+fuz_check_for_label : Monounsaturated Fat 0.5g
+get_fuz_label_from_string : Monounsaturated Fat 0.5g
+['0.5g']
+fuz_check_for_label : i Potassium 115mg
+get_fuz_label_from_string : i Potassium 115mg
+['115mg']
+fuz_check_for_label : Polyunsaturated Fat 0.5g
+get_fuz_label_from_string : Polyunsaturated Fat 0.5g
+['0.5g']
+fuz_check_for_label : Protein 20
+get_fuz_label_from_string : Protein 20
+['20']
+fuz_check_for_label : Other Carbohydrate 11g
+get_fuz_label_from_string : Other Carbohydrate 11g
+['11g']
+Total Time Taken: 6.25434s
+{'Sugars': (9.0, 'g'), 'Soluble Fiber': (1.0, 'g'), 'Dietary Fiber': (2.0, 'g'), 'Saturated Fat': (0.0, 'g'), 'Sodium': 1.0, 'Calories': 150.0, 'Cholesterol': (0.0, 'mg'), 'Carbohydrate': (22.0, 'g'), 'Calories from Fat': 15.0, 'Total Fat': 1.59, 'Monounsaturated Fat': (0.5, 'g'), 'Potassium': (115.0, 'mg'), 'Polyunsaturated Fat': (0.5, 'g'), 'Protein': 20.0, 'Other Carbohydrate': (11.0, 'g')}
+Time taken to detect the table: 0.03860s
+./data/result/output2.jpg
+Time Taken to detect bounding boxes for text: 1.52987s
+./data/result/second1.jpg
+300mg
+
+./data/result/second2.jpg
+3759
+
+./data/result/second3.jpg
+25%
+
+./data/result/second4.jpg
+25%
+
+./data/result/second5.jpg
+25%
+
+./data/result/second6.jpg
+6%
+
+./data/result/second7.jpg
+50%
+
+./data/result/second8.jpg
+Less than 20g
+
+./data/result/second9.jpg
+30g
+
+./data/result/second10.jpg
+10%
+
+./data/result/second11.jpg
+25%
+
+./data/result/second12.jpg
+95%
+
+./data/result/second13.jpg
+25%
+
+./data/result/second14.jpg
+30%
+
+./data/result/second15.jpg
+35%
+
+./data/result/second16.jpg
+10%
+
+./data/result/second17.jpg
+25%
+
+./data/result/second18.jpg
+Sat Fat
+
+./data/result/second19.jpg
+10%
+
+./data/result/second20.jpg
+Vitamin C
+
+./data/result/second21.jpg
+10%
+
+./data/result/second22.jpg
+15%
+
+./data/result/second23.jpg
+Dietary Fiber.)
+
+./data/result/second24.jpg
+25%
+
+./data/result/second25.jpg
+Calcium
+
+./data/result/second26.jpg
+25%
+
+./data/result/second27.jpg
+250
+
+./data/result/second28.jpg
+Vitamin A
+
+./data/result/second29.jpg
+10%
+
+./data/result/second30.jpg
+35%
+
+./data/result/second31.jpg
+iron
+
+./data/result/second32.jpg
+50%
+
+./data/result/second33.jpg
+” Percent Daily Values are based on a 2,000 calorie Gist.
+
+./data/result/second34.jpg
+Vitamin D
+
+./data/result/second35.jpg
+25%
+
+./data/result/second36.jpg
+Vitamin Be
+
+./data/result/second37.jpg
+Calories 2000 2,500
+
+./data/result/second38.jpg
+80g
+
+./data/result/second39.jpg
+iNiacin
+
+./data/result/second40.jpg
+”" Amount in cereal. A serving of cereal pius SKIM MIIK
+
+./data/result/second41.jpg
+220mg sodium, 320mg potassium, 28g total —
+
+./data/result/second42.jpg
+3009
+
+./data/result/second43.jpg
+a ictal Carbohydrate.
+
+./data/result/second44.jpg
+
+./data/result/second45.jpg
+provides 1.5g total fat, less than 5mg cholesterol,
+
+./data/result/second46.jpg
+! Thiamin
+
+./data/result/second47.jpg
+3,500mg 3,500mg
+
+./data/result/second48.jpg
+dessthan 2,400mg 2,400mg
+
+./data/result/second49.jpg
+Riboflavin
+
+./data/result/second50.jpg
+Less than 65g
+
+./data/result/second51.jpg
+| Vitamin Bio
+
+./data/result/second52.jpg
+1Folic Acid
+
+./data/result/second53.jpg
+carbohydrate (15g sugars, 12g other carbohydrate), anc J
+
+./data/result/second54.jpg
+s\nolestero).._ Lessthan 300mg
+
+./data/result/second55.jpg
+a Potassium |
+
+./data/result/second56.jpg
+20% 1
+
+./data/result/second57.jpg
+1 Magnesium
+
+./data/result/second58.jpg
+1Pnosphorus
+
+./data/result/second59.jpg
+25%
+
+./data/result/second60.jpg
+8 Sodium:
+
+./data/result/second61.jpg
+8%
+
+./data/result/second62.jpg
+30%]
+
+./data/result/second63.jpg
+Your daily values may be higher or lower depending on
+
+./data/result/second64.jpg
+/Q protein.
+
+./data/result/second65.jpg
+§ total Fat
+
+./data/result/second66.jpg
+your calorie needs: —
+
+./data/result/second67.jpg
+10% I
+
+./data/result/second68.jpg
+' Zinc
+
+./data/result/second69.jpg
+25%
+
+fuz_check_for_label : Less than 20g
+fuz_check_for_label : Sat Fat
+ 250
+get_fuz_label_from_string : Sat Fat
+ 250
+['250']
+fuz_check_for_label : Vitamin C
+ 10%
+ 10%
+get_fuz_label_from_string : Vitamin C
+ 10%
+ 10%
+['10%', '10%']
+fuz_check_for_label : Dietary Fiber.)
+ 30g
+get_fuz_label_from_string : Dietary Fiber.)
+ 30g
+['30g']
+fuz_check_for_label : Calcium
+ 25%
+ 10%
+get_fuz_label_from_string : Calcium
+ 25%
+ 10%
+['25%', '10%']
+fuz_check_for_label : Vitamin A
+ 10%
+ 15%
+get_fuz_label_from_string : Vitamin A
+ 10%
+ 15%
+['10%', '15%']
+fuz_check_for_label : iron
+ 25%
+ 25%
+fuz_check_for_label : ” Percent Daily Values are based on a 2,000calorie Gist.
+fuz_check_for_label : Vitamin D
+ 10%
+ 95%
+get_fuz_label_from_string : Vitamin D
+ 10%
+ 95%
+['10%', '95%']
+fuz_check_for_label : Vitamin Be
+ 25%
+ 25%
+get_fuz_label_from_string : Vitamin Be
+ 25%
+ 25%
+['25%', '25%']
+fuz_check_for_label : Calories 20002,500
+get_fuz_label_from_string : Calories 20002,500
+['20002,500']
+fuz_check_for_label : iNiacin
+ 25%
+ 25%
+fuz_check_for_label : 220mg sodium, 320mg potassium, 28g total
+fuz_check_for_label : a ictal Carbohydrate.
+ 375g
+ 3009
+get_fuz_label_from_string : a ictal Carbohydrate.
+ 375g
+ 300g
+['375g', '300g']
+fuz_check_for_label : provides 1.5g total fat, less than 5mg cholesterol,
+fuz_check_for_label : ! Thiamin
+ 25%
+ 30%
+fuz_check_for_label : dessthan 2,400mg 2,400mg
+fuz_check_for_label : Riboflavin
+ 25%
+ 35%
+get_fuz_label_from_string : Riboflavin
+ 25%
+ 35%
+['25%', '35%']
+fuz_check_for_label : Less than 65g
+fuz_check_for_label : Vitamin Bio
+ 25%
+ 35%
+fuz_check_for_label : 1Folic Acid
+get_fuz_label_from_string : 1Folic Acid
+['1']
+fuz_check_for_label : carbohydrate (15g sugars, 12g other carbohydrate), anc J
+fuz_check_for_label : s\nolestero).. Lessthan 300mg
+fuz_check_for_label : a Potassium 
+ 3,500mg 3,500mg
+fuz_check_for_label : 1Magnesium
+get_fuz_label_from_string : 1Magnesium
+['1']
+fuz_check_for_label : 1Pnosphorus
+fuz_check_for_label : 8Sodium:
+get_fuz_label_from_string : 8Sodium:
+['8']
+fuz_check_for_label : § total Fat
+ 80g
+get_fuz_label_from_string : § total Fat
+ 80g
+['80g']
+fuz_check_for_label : 10% I
+fuz_check_for_label : Zinc
+ 25%
+ 30%]
+Total Time Taken: 6.41810s
+{'Saturated Fat': 250.0, 'Vitamin C': 10.0, 'Dietary Fiber': (30.0, 'g'), 'Calcium': 25.0, 'Vitamin A': 25.0, 'Vitamin D': 10.0, 'Calories': 20002.5, 'Total Carbohydrate': (375.0, 'g'), 'Riboflavin': 25.0, 'Folic': 1.0, 'Magnesium': 1.0, 'Sodium': 8.0, 'Total Fat': (80.0, 'g')}

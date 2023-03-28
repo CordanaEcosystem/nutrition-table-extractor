@@ -16,11 +16,13 @@ def load_model():
     """
     load trained weights for the model
     """    
-    global obj
+    global obj,obj2
     obj = NutritionTableDetector()
+    obj2 = NutritionTableDetector()
+
     print ("Weights Loaded!")
 
-def detect(img_path, debug):
+def detect(img_path, debug,firstCall=False):
     """
     @param img_path: Pathto the image for which labels to be extracted
     """
@@ -49,8 +51,12 @@ def detect(img_path, debug):
     coords = (xmin, ymin, xmax, ymax)
 
     #Crop the image with the given bounding box
-    cropped_image = crop(image, coords, "./data/result/output.jpg", 0, True)
+    if(firstCall):
+        cropped_image = crop(image, coords, "./data/result/output.jpg", 0, True)
 
+        cropped_image2= crop(image,(0,ymax,width,height),"./data/result/second-input.jpg", 0, True)
+    else:
+        cropped_image = crop(image, coords, "./data/result/output2.jpg", 0, True)
     #Apply several filters to the image for better results in OCR
     cropped_image = preprocess_for_ocr(cropped_image, 7)
 
@@ -72,8 +78,11 @@ def detect(img_path, debug):
     #Apply OCR to to blobs and save data in organized dict
     for blob_cord in text_blob_list:
         if debug:
+            additional_text=""
+            if(firstCall==False):
+                additional_text="second"
             counter+=1
-            word_image = crop(cropped_image, blob_cord, "./data/result/{}.jpg".format(counter), 0, True)
+            word_image = crop(cropped_image, blob_cord, "./data/result/{}{}.jpg".format(additional_text,counter), 0, True)
         else:
             word_image = crop(cropped_image, blob_cord, "./", 0, False)
             
@@ -140,7 +149,8 @@ def main():
     load_model()
     load_text_model()
 
-    print(detect(args.image, args.debug))
+    print(detect(args.image, args.debug,True))
+    print(detect("./data/result/second-input.jpg", args.debug,False))
 
 if __name__ == '__main__':
     main()
