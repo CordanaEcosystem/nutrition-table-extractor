@@ -2,7 +2,8 @@
 import argparse
 import time
 import cv2
-
+import shutil
+import os
 from detect_table_class import NutritionTableDetector
 from crop import crop
 from text_detection import text_detection, load_text_model
@@ -54,7 +55,7 @@ def detect(img_path, debug,firstCall=False):
     if(firstCall):
         cropped_image = crop(image, coords, "./data/result/output.jpg", 0, True)
 
-        cropped_image2= crop(image,(0,ymax,width,height),"./data/result/second-input.jpg", 0, True)
+        cropped_image2= crop(image,(0,ymax-(ymax/10),width,height),"./data/result/second-input.jpg", 0, True)
     else:
         cropped_image = crop(image, coords, "./data/result/output2.jpg", 0, True)
     #Apply several filters to the image for better results in OCR
@@ -145,6 +146,23 @@ def main():
     ap.add_argument("-i", "--image", required=True, help="path to the input image")
     ap.add_argument("-d", "--debug", action='store_true', help="print some debug info")
     args = ap.parse_args()
+    if args.debug:
+
+
+# get the current working directory
+        current_directory = os.getcwd()
+
+# specify the relative path of the folder to be emptied
+        folder_name = 'data/result'
+        folder_path = os.path.join(current_directory, folder_name)
+
+# remove the folder and all its contents
+        shutil.rmtree(folder_path)
+
+# create an empty folder with the same name
+# if you want to keep the folder structure
+# if not, skip this step
+        os.mkdir(folder_path)
 
     load_model()
     load_text_model()
