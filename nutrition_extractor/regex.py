@@ -42,6 +42,7 @@ def check_for_label(text, words):
 def fuz_check_for_label(text, fuzdict, debug):
     if debug:
         print("fuz_check_for_label : {}".format(text))
+        
     # text = text.lower()
     text = clean_string(text)
     if fuzdict.__contains__(text):

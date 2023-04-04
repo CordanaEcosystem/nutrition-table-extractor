@@ -8,7 +8,7 @@ import sys
 import os
 sys.path.append(os.path.join(os.getcwd(), 'nutrition_extractor'))
 sys.path.append(os.path.join(os.getcwd(), 'nutrition_extractor/data'))
-from detection import detect
+from detection import detect_all
 @csrf_exempt
 
 def nutritionExtract(request):
@@ -16,5 +16,6 @@ def nutritionExtract(request):
 		new_file = UploadFile(file = request.FILES['image'])
 		new_file.save()
 		name = new_file.file.name
-		response = detect(name, False)
+		response = detect_all(name, False)
+		
 		return JsonResponse(response)
