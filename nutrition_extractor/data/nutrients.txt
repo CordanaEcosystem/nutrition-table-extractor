@@ -53,6 +53,7 @@ Vitamin A
 Vitamin C
 Calcium
 Iron
+iron
 Vitamin D
 Thiamin
 Riboflavin
