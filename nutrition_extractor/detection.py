@@ -12,7 +12,13 @@ from regex import *
 from nutrient_list import *
 from spacial_map import *
 from matplotlib import pyplot as plt 
-
+def detect_all(img_path, debug):
+    dict1=detect(img_path, debug,True)
+    print("first scan :",dict1)
+    dict2=detect("./data/result/second-input.jpg", debug,False)
+    print("second scan :",dict2)
+    print("final result :",{**dict2,**dict1})
+    return {**dict2,**dict1}
 def load_model():
     """
     load trained weights for the model
@@ -55,7 +61,7 @@ def detect(img_path, debug,firstCall=False):
     if(firstCall):
         cropped_image = crop(image, coords, "./data/result/output.jpg", 0, True)
 
-        cropped_image2= crop(image,(0,ymax-(ymax/10),width,height),"./data/result/second-input.jpg", 0, True)
+        cropped_image2= crop(image,(0,ymax-((height-ymax)/15),width,height),"./data/result/second-input.jpg", 0, True)
     else:
         cropped_image = crop(image, coords, "./data/result/output2.jpg", 0, True)
     #Apply several filters to the image for better results in OCR
@@ -121,7 +127,7 @@ def detect(img_path, debug,firstCall=False):
                     text_dict['string_type'] = 0
 
     fuzdict=make_fuzdict('data/nutrients.txt')
-
+    # print("fuz dict",fuzdict)
     #Add the nutritional label and its value to the nutrient_dict
     for text_dict in text_location_list:
 
@@ -130,6 +136,7 @@ def detect(img_path, debug,firstCall=False):
 
 #             if check_for_label(text, make_list('data/nutrients.txt')):
             if fuz_check_for_label(text, fuzdict, debug):
+                print("===coming")
                 label_name, label_value = get_fuz_label_from_string(text, fuzdict, debug)
                 nutrient_dict[label_name] = separate_unit(label_value)
 
@@ -167,8 +174,8 @@ def main():
     load_model()
     load_text_model()
 
-    print(detect(args.image, args.debug,True))
-    print(detect("./data/result/second-input.jpg", args.debug,False))
+   
+
 
 if __name__ == '__main__':
     main()
