@@ -5,6 +5,7 @@ off-nutrition-table-extractor/__pycache__/*
 nutrition_extractor/utils/__pycache__/*
 api/__pycache__/*
 nutrition_extractor/test_images/*
+ingredient_extractor/test_images/*
 files/*
 nutrition_extractor/data/result
 *.pyc
