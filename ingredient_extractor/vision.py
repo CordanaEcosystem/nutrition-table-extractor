@@ -67,7 +67,7 @@ def extract_ingredients_from_image(content):
         response_json = json.loads(response.text)
         nutrition_text=response_json['responses'][0]['fullTextAnnotation']['text']
     
-        print(nutrition_text)
+       
         ingredients = extract_ingredients(nutrition_text)
-        print(ingredients)
+      
         return ingredients
