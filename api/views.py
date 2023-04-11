@@ -21,6 +21,8 @@ def nutritionExtract(request):
 		new_file.save()
 		name = new_file.file.name
 		response = detect_all(name, False)
+		os.remove(file_path)
+		file_path=new_file.file.path
 		
 		return JsonResponse(response)
 @csrf_exempt	
@@ -46,8 +48,8 @@ def ingredientExtract(request):
         
 			response = extract_ingredients_from_image(file_base64)
 			dict={"ingredients":response}
-		# file_path=new_file.file.path
-		# os.remove(file_path)
+			
+			os.remove(file_path)
 		
 			return JsonResponse(dict)
 

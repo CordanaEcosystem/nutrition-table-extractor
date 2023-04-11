@@ -1106,7 +1106,7 @@
         "kind": 2,
         "importPath": "api.views",
         "description": "api.views",
-        "peekOfCode": "def nutritionExtract(request):\n\tif request.method == 'POST':\n\t\tnew_file = UploadFile(file = request.FILES['image'])\n\t\tnew_file.save()\n\t\tname = new_file.file.name\n\t\tresponse = detect_all(name, False)\n\t\treturn JsonResponse(response)\n@csrf_exempt\t\ndef ingredientExtract(request):\n\tif request.method == 'POST':",
+        "peekOfCode": "def nutritionExtract(request):\n\tif request.method == 'POST':\n\t\tnew_file = UploadFile(file = request.FILES['image'])\n\t\tnew_file.save()\n\t\tname = new_file.file.name\n\t\tresponse = detect_all(name, False)\n\t\tos.remove(file_path)\n\t\tfile_path=new_file.file.path\n\t\treturn JsonResponse(response)\n@csrf_exempt\t",
         "detail": "api.views",
         "documentation": {}
     },
@@ -1124,7 +1124,7 @@
         "kind": 5,
         "importPath": "api.views",
         "description": "api.views",
-        "peekOfCode": "\t\tnew_file = UploadFile(file = request.FILES['image'])\n\t\tnew_file.save()\n\t\tname = new_file.file.name\n\t\tresponse = detect_all(name, False)\n\t\treturn JsonResponse(response)\n@csrf_exempt\t\ndef ingredientExtract(request):\n\tif request.method == 'POST':\n\t\tnew_file = UploadFile(file = request.FILES['image'])\n\t\tnew_file.save()",
+        "peekOfCode": "\t\tnew_file = UploadFile(file = request.FILES['image'])\n\t\tnew_file.save()\n\t\tname = new_file.file.name\n\t\tresponse = detect_all(name, False)\n\t\tos.remove(file_path)\n\t\tfile_path=new_file.file.path\n\t\treturn JsonResponse(response)\n@csrf_exempt\t\ndef ingredientExtract(request):\n\tif request.method == 'POST':",
         "detail": "api.views",
         "documentation": {}
     },
@@ -1133,7 +1133,7 @@
         "kind": 5,
         "importPath": "api.views",
         "description": "api.views",
-        "peekOfCode": "\t\tname = new_file.file.name\n\t\tresponse = detect_all(name, False)\n\t\treturn JsonResponse(response)\n@csrf_exempt\t\ndef ingredientExtract(request):\n\tif request.method == 'POST':\n\t\tnew_file = UploadFile(file = request.FILES['image'])\n\t\tnew_file.save()\n\t\t# Delete the file from the server\n\t\t# extract_ingredients_from_image(request.FILES['image'])",
+        "peekOfCode": "\t\tname = new_file.file.name\n\t\tresponse = detect_all(name, False)\n\t\tos.remove(file_path)\n\t\tfile_path=new_file.file.path\n\t\treturn JsonResponse(response)\n@csrf_exempt\t\ndef ingredientExtract(request):\n\tif request.method == 'POST':\n\t\tnew_file = UploadFile(file = request.FILES['image'])\n\t\tnew_file.save()",
         "detail": "api.views",
         "documentation": {}
     },
@@ -1142,7 +1142,7 @@
         "kind": 5,
         "importPath": "api.views",
         "description": "api.views",
-        "peekOfCode": "\t\tresponse = detect_all(name, False)\n\t\treturn JsonResponse(response)\n@csrf_exempt\t\ndef ingredientExtract(request):\n\tif request.method == 'POST':\n\t\tnew_file = UploadFile(file = request.FILES['image'])\n\t\tnew_file.save()\n\t\t# Delete the file from the server\n\t\t# extract_ingredients_from_image(request.FILES['image'])\n\t\tname = new_file.file.name",
+        "peekOfCode": "\t\tresponse = detect_all(name, False)\n\t\tos.remove(file_path)\n\t\tfile_path=new_file.file.path\n\t\treturn JsonResponse(response)\n@csrf_exempt\t\ndef ingredientExtract(request):\n\tif request.method == 'POST':\n\t\tnew_file = UploadFile(file = request.FILES['image'])\n\t\tnew_file.save()\n\t\t# Delete the file from the server",
         "detail": "api.views",
         "documentation": {}
     },
@@ -1160,7 +1160,7 @@
         "kind": 5,
         "importPath": "api.views",
         "description": "api.views",
-        "peekOfCode": "\t\tname = new_file.file.name\n\t\tfile_path=new_file.file.path\n\t\twith io.open(file_path, 'rb') as img:\n\t\t\tfile_data =img.read()\n\t\t\tfile_base64 = base64.b64encode(file_data).decode('utf-8')\n            # Convert the file to base64\n\t\t\tresponse = extract_ingredients_from_image(file_base64)\n\t\t\tdict={\"ingredients\":response}\n\t\t# file_path=new_file.file.path\n\t\t# os.remove(file_path)",
+        "peekOfCode": "\t\tname = new_file.file.name\n\t\tfile_path=new_file.file.path\n\t\twith io.open(file_path, 'rb') as img:\n\t\t\tfile_data =img.read()\n\t\t\tfile_base64 = base64.b64encode(file_data).decode('utf-8')\n            # Convert the file to base64\n\t\t\tresponse = extract_ingredients_from_image(file_base64)\n\t\t\tdict={\"ingredients\":response}\n\t\t\tos.remove(file_path)\n\t\t\treturn JsonResponse(dict)",
         "detail": "api.views",
         "documentation": {}
     },
@@ -1169,7 +1169,7 @@
         "kind": 5,
         "importPath": "api.views",
         "description": "api.views",
-        "peekOfCode": "\t\t\tfile_base64 = base64.b64encode(file_data).decode('utf-8')\n            # Convert the file to base64\n\t\t\tresponse = extract_ingredients_from_image(file_base64)\n\t\t\tdict={\"ingredients\":response}\n\t\t# file_path=new_file.file.path\n\t\t# os.remove(file_path)\n\t\t\treturn JsonResponse(dict)",
+        "peekOfCode": "\t\t\tfile_base64 = base64.b64encode(file_data).decode('utf-8')\n            # Convert the file to base64\n\t\t\tresponse = extract_ingredients_from_image(file_base64)\n\t\t\tdict={\"ingredients\":response}\n\t\t\tos.remove(file_path)\n\t\t\treturn JsonResponse(dict)",
         "detail": "api.views",
         "documentation": {}
     },
@@ -1178,7 +1178,7 @@
         "kind": 5,
         "importPath": "api.views",
         "description": "api.views",
-        "peekOfCode": "\t\t\tresponse = extract_ingredients_from_image(file_base64)\n\t\t\tdict={\"ingredients\":response}\n\t\t# file_path=new_file.file.path\n\t\t# os.remove(file_path)\n\t\t\treturn JsonResponse(dict)",
+        "peekOfCode": "\t\t\tresponse = extract_ingredients_from_image(file_base64)\n\t\t\tdict={\"ingredients\":response}\n\t\t\tos.remove(file_path)\n\t\t\treturn JsonResponse(dict)",
         "detail": "api.views",
         "documentation": {}
     },
