@@ -19,6 +19,7 @@ def nutritionExtract(request):
 	if request.method == 'POST':
 		new_file = UploadFile(file = request.FILES['image'])
 		new_file.save()
+		file_path=new_file.file.path
 		name = new_file.file.name
 		response = detect_all(name, False)
 		os.remove(file_path)
