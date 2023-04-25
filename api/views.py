@@ -4,6 +4,7 @@ import io
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from ingredient_extractor.vision import extract_ingredients_from_image
+from process_product.client import server_client
 from .allergies import check_allergies
 from .models import *
 from .forms import UploadFileForm
@@ -13,6 +14,7 @@ import sys
 import os
 import csv
 from PIL import Image
+
 sys.path.append(os.path.join(os.getcwd(), 'nutrition_extractor'))
 sys.path.append(os.path.join(os.getcwd(), 'nutrition_extractor/data'))
 
@@ -128,7 +130,8 @@ def process_new_product(request):
                         "brandOwner": data["brandOwner"],
                         "gtinUpc": data["gtinUpc"],
                         "nutrients": "{}",
-                        # "brandName": data["brandName"],
+                        "brandName": data["brandName"],
+                        "addedBy":data["uid"],
 
                         "topThree": [],
                         "descriptionLength": len(data["description"]),
@@ -143,6 +146,7 @@ def process_new_product(request):
             new_data["allergyInformation"] = check_allergies(data["ingredients"])
             new_data["ingredients"] = data["ingredients"]
         print("===", new_data)
+        print(server_client.collections['WaitlistProducts'].documents.create(new_data))
 
         dict = {"msg": "hi"}
         return JsonResponse(dict)
