@@ -14,6 +14,9 @@ import sys
 import os
 import csv
 from PIL import Image
+import random
+
+
 
 sys.path.append(os.path.join(os.getcwd(), 'nutrition_extractor'))
 sys.path.append(os.path.join(os.getcwd(), 'nutrition_extractor/data'))
@@ -75,66 +78,54 @@ def process_new_product(request):
             reader = csv.DictReader(f)
 
             for row in reader:
-                name = row["name"].strip()
+                name = row["name"].strip().lower()
                 all_nutrients.append(name)
                 all_nutrients_mapping[name] = {
                     "name": name,
                     "new_name": row["new_name"].strip(),
                     "category": row["category"].strip(),
-                    "new_unit": row["new_unit"],
+                    # "new_unit": row["new_unit"],
                 }
                 unit_mapping[row["new_name"].strip()] = {
                     "category": row["category"].strip(),
-                    "new_unit": row["new_unit"],
+                    # "new_unit": row["new_unit"],
                 }
         print(all_nutrients_mapping)
         for record in data["nutrients"]:
             result = all_nutrients_mapping.get(
-                record["name"])
+                record["name"].lower())
+            print("11",result)
             key = record["name"].strip()
 
             if result is not None:
                 value = record["amount"]
 
-                if key == "Vitamin A, RAE":
-                    value = value * 3.33
-                elif key == "Vitamin D (D2 + D3)":
-                    value = value * 40
-                elif key == "Vitamin E (label entry primarily)":
-                    value = value * 0.67
-                if record["unitName"] != "kJ":
-                    if (
-                        nutrients[result["category"]].get(
-                            result["new_name"])
-                        is not None
-                    ):
+                print("222",value)
+               
 
-                        nutrients[result["category"]][result["new_name"]][
-                            "value"
-                        ] += value
-                    else:
-
-                        nutrients[result["category"]][result["new_name"]] = {
+                nutrients[result["category"]][result["new_name"]] = {
                             "value": value,
-                            "unit": (
-                                result["new_unit"]
-                                or record["unitName"]
-                            ),
+                            "unit": record["unitName"]
                         }
-                # if count==25 or count==26:
+              
         print("-----", nutrients)
+        # generate a random 6-digit number between 100000 and 999999 (inclusive)
+        random_number = random.randint(100000, 999999)
+
+        print("-9|",random_number)
         new_data = {
 
             "dataType": "Branded",
                         "description": data["description"],
                         "brandOwner": data["brandOwner"],
                         "gtinUpc": data["gtinUpc"],
-                        "nutrients": "{}",
+                        "nutrients": str(json.dumps(nutrients)),
                         "brandName": data["brandName"],
                         "addedBy":data["uid"],
 
                         "topThree": [],
                         "descriptionLength": len(data["description"]),
+                        "fdcId":data["uid"]+"-"+str(random_number)
         }
         if "servingSize" in data:
             new_data["servingSize"] = data["servingSize"]
@@ -146,7 +137,7 @@ def process_new_product(request):
             new_data["allergyInformation"] = check_allergies(data["ingredients"])
             new_data["ingredients"] = data["ingredients"]
         print("===", new_data)
-        print(server_client.collections['WaitlistProducts'].documents.create(new_data))
+        # print(server_client.collections['WaitlistProducts'].documents.create(new_data))
 
-        dict = {"msg": "hi"}
+        dict = {"message": "success"}
         return JsonResponse(dict)

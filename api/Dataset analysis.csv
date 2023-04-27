@@ -1,52 +1,39 @@
-new_name,name,new_unit,category,,iu to µg
-Vitamin A,"Vitamin A, IU",iu,vitamins,,
-Vitamin A,"Vitamin A, RAE",iu,vitamins,,
-Vitamin B-12,Vitamin B-12,µg,vitamins,,µg
-Vitamin B-12,"Vitamin B-12, added",µg,vitamins,,
-Vitamin B-9,Folate,µg,vitamins,,
-Vitamin B-6,Vitamin B-6,,vitamins,,
-Vitamin C,"Vitamin C, total ascorbic acid",,vitamins,,
-Vitamin D ,Vitamin D (D2 + D3),iu,vitamins,,iu to µg
-Vitamin D ,"Vitamin D (D2 + D3), International Units",iu,vitamins,,
-Vitamin E,Vitamin E,mg,vitamins,,iu to mg
-Vitamin E,Vitamin E (alpha-tocopherol),mg,vitamins,,
-Vitamin E,Vitamin E (label entry primarily),mg,vitamins,,
-Vitamin E,"Vitamin E, added",mg,vitamins,,
-Vitamin K ,Vitamin K (Dihydrophylloquinone),µg,vitamins,,
-Vitamin K ,Vitamin K (Menaquinone-4),µg,vitamins,,
-Vitamin K ,Vitamin K (phylloquinone),µg,vitamins,,
-Choline,"Choline, total",mg,vitamins,,
-Choline,"Choline, from phosphotidyl choline",mg,vitamins,,
-Vitamin B-5,Pantothenic acid,,vitamins,,
-Vitamin B-1,Thiamin,,vitamins,,
-Vitamin B-2,Riboflavin,,vitamins,,
-Vitamin B-3,Niacin,,vitamins,,
-Vitamin B-7,Biotin,,vitamins,,
-Sodium,"Sodium, Na",,minerals,,
-Calcium,"Calcium, Ca",,minerals,,
-Potassium,"Potassium, K",,minerals,,
-Phosphorous,"Phosphorus, P",,minerals,,
-Magnesium,"Magnesium, Mg",,minerals,,
-Zinc,"Zinc, Zn",,minerals,,
-Copper,"Copper, Cu",,minerals,,
-Manganese,"Manganese, Mn",,minerals,,
-Selenium,"Selenium, Se",,minerals,,
-Iodine,"Iodine, I",,minerals,,
-Flouride,"Fluoride, F",,minerals,,
-Chlorine,"Chlorine, Cl",,minerals,,
-Molybdenum,"Molybdenum, Mo",,minerals,,
-Chromium,"Chromium, Cr",,minerals,,
-Iron,"Iron, Fe",,minerals,,
-Fat,Total lipid (fat),,macros,,
-Carbohydrate,"Carbohydrate, by difference",,macros,,
-Sugar,"Sugars, Total",,macros,,
-Ash,Ash,,macros,,
-Alcohol,"Alcohol, ethyl",,macros,,
-Protein,Protein,,macros,,
-Calories,Energy,,macros,,
-Fiber,"Fiber, total dietary",,macros,,
-Cholesterol,Cholesterol,,macros,,
-Total Saturated Fatty Acids,"Fatty acids, total saturated",,macros,,
-Total Trans Fatty Acids,"Fatty acids, total trans",,macros,,
-Total Monounsaturated Fatty Acids,"Fatty acids, total monounsaturated",,macros,,
-Total Polyunsaturated Fatty Acids,"Fatty acids, total polyunsaturated",,macros,,
+new_name,name,category
+Vitamin A,Vitamin A,vitamins
+Vitamin B-12,cobalamin,vitamins
+Vitamin B-9,Folate,vitamins
+Vitamin B-6,Pyridoxine,vitamins
+Vitamin C,ascorbic acid,vitamins
+Vitamin D ,Vitamin D ,vitamins
+Vitamin E,Vitamin E,vitamins
+Vitamin K ,Vitamin K,vitamins
+Choline,Choline,vitamins
+Vitamin B-5,Pantothenic acid,vitamins
+Vitamin B-1,Thiamin,vitamins
+Vitamin B-2,Riboflavin,vitamins
+Vitamin B-3,Niacin,vitamins
+Vitamin B-7,Biotin,vitamins
+Sodium,Sodium,minerals
+Calcium,Calcium,minerals
+Potassium,Potassium,minerals
+Phosphorous,Phosphorous,minerals
+Magnesium,Magnesium,minerals
+Zinc,Zinc,minerals
+Copper,Copper,minerals
+Manganese,Manganese,minerals
+Selenium,Selenium,minerals
+Iodine,Iodine,minerals
+Flouride,Flouride,minerals
+Chlorine,Chlorine,minerals
+Molybdenum,Molybdenum,minerals
+Chromium,Chromium,minerals
+Iron,Iron,minerals
+Fat,Total Fat,macros
+Carbohydrate,Total Carbohydrate,macros
+Sugar,Total Sugar,macros
+Protein,Total Protein,macros
+Calories,Calories,macros
+Fiber,Dietary Fiber,macros
+Cholesterol,Cholesterol,macros
+Total Saturated Fatty Acids,saturated fat,macros
+Total Trans Fatty Acids,trans fat,macros
