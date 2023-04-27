@@ -2,7 +2,8 @@ import typesense
 schema = {
     "name": "WaitlistProducts",
     "fields": [
-        # {"name": "fdcId", "type": "string"},
+        {"name": "fdcId", "type": "string"},
+         {"name": "addedBy", "type": "string"},
         {"name": "topThree", "type": "string[]"},
         {"name": "dataType", "type": "string","sort":True},
         {"name": "description", "type": "string", "token_separators": [",", "."]},
