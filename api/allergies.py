@@ -1,3 +1,6 @@
+from collections import Counter
+
+
 allergy_dict = {
     "dairy": ['milk', 'cheese', 'yogurt', 'butter', 'cream', 'sour cream', 'custard', 'evaporated milk', 'condensed milk', 'buttermilk', 'ice cream', 'pudding'],
     "tree-nuts": ['almonds', 'brazil nuts', 'cashews', 'chestnuts', 'filberts', 'hazelnuts', 'hickory nuts', 'macademia', 'pecans', 'pistachios', 'walnuts', 'ginkgo'],
@@ -98,3 +101,24 @@ def check_allergies(ingredients):
 
 
 # check_allergies("CHEDDAR CHEESE AGED OVER 100 DAYS (CULTURED UNPASTEURIZED MILK, SALT, ENZYMES), WATER, WHEY, CREAM, TOMATO FLAKES, BASIL, LACTIC ACID. benne")
+def get_top_three(micros):
+    new_mapping = {}
+    for key in micros:
+        value = micros[key]["value"]
+        unit = micros[key]["unit"]
+        if unit == "mg":
+            new_mapping[key] = value
+        elif unit == "µg":
+            new_mapping[key] = value / 1000
+        elif unit == "iu":
+            if key == "Vitamin A":
+                new_mapping[key] = value * 0.00333
+            elif key == "Vitamin D":
+                value = value * 0.04
+    c = Counter(new_mapping)
+
+    most_common = c.most_common(3)
+
+    my_keys = [key for key, val in most_common]
+
+    return my_keys

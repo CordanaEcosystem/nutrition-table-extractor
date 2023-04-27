@@ -5,7 +5,7 @@ from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from ingredient_extractor.vision import extract_ingredients_from_image
 from process_product.client import server_client
-from .allergies import check_allergies
+from .allergies import check_allergies,get_top_three
 from .models import *
 from .forms import UploadFileForm
 import cv2
@@ -109,6 +109,8 @@ def process_new_product(request):
                         }
               
         print("-----", nutrients)
+        top_three = get_top_three(
+                    nutrients["vitamins"] | nutrients["minerals"])
         # generate a random 6-digit number between 100000 and 999999 (inclusive)
         random_number = random.randint(100000, 999999)
 
@@ -123,7 +125,7 @@ def process_new_product(request):
                         "brandName": data["brandName"],
                         "addedBy":data["uid"],
 
-                        "topThree": [],
+                        "topThree": top_three,
                         "descriptionLength": len(data["description"]),
                         "fdcId":data["uid"]+"-"+str(random_number)
         }
@@ -137,7 +139,7 @@ def process_new_product(request):
             new_data["allergyInformation"] = check_allergies(data["ingredients"])
             new_data["ingredients"] = data["ingredients"]
         print("===", new_data)
-        # print(server_client.collections['WaitlistProducts'].documents.create(new_data))
+        print(server_client.collections['WaitlistProducts'].documents.create(new_data))
 
-        dict = {"message": "success"}
+        dict = {"message": "success","data":new_data}
         return JsonResponse(dict)

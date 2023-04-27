@@ -48,6 +48,23 @@
         "documentation": {}
     },
     {
+        "label": "collections",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "collections",
+        "description": "collections",
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "Counter",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
         "label": "AppConfig",
         "importPath": "django.apps",
         "description": "django.apps",
@@ -206,6 +223,14 @@
         "documentation": {}
     },
     {
+        "label": "server_client",
+        "importPath": "process_product.client",
+        "description": "process_product.client",
+        "isExtraImport": true,
+        "detail": "process_product.client",
+        "documentation": {}
+    },
+    {
         "label": "cv2",
         "kind": 6,
         "isExtraImport": true,
@@ -221,6 +246,15 @@
         "importPath": "json",
         "description": "json",
         "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
         "documentation": {}
     },
     {
@@ -262,6 +296,15 @@
         "description": "PIL",
         "isExtraImport": true,
         "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
         "documentation": {}
     },
     {
@@ -776,15 +819,6 @@
         "documentation": {}
     },
     {
-        "label": "collections",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "collections",
-        "description": "collections",
-        "detail": "collections",
-        "documentation": {}
-    },
-    {
         "label": "functools",
         "kind": 6,
         "isExtraImport": true,
@@ -964,15 +998,6 @@
         "documentation": {}
     },
     {
-        "label": "csv",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "csv",
-        "description": "csv",
-        "detail": "csv",
-        "documentation": {}
-    },
-    {
         "label": "pytesseract",
         "kind": 6,
         "isExtraImport": true,
@@ -1030,6 +1055,55 @@
         "documentation": {}
     },
     {
+        "label": "typesense",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "typesense",
+        "description": "typesense",
+        "detail": "typesense",
+        "documentation": {}
+    },
+    {
+        "label": "server_client",
+        "importPath": "client",
+        "description": "client",
+        "isExtraImport": true,
+        "detail": "client",
+        "documentation": {}
+    },
+    {
+        "label": "schema",
+        "importPath": "client",
+        "description": "client",
+        "isExtraImport": true,
+        "detail": "client",
+        "documentation": {}
+    },
+    {
+        "label": "server_client",
+        "importPath": "client",
+        "description": "client",
+        "isExtraImport": true,
+        "detail": "client",
+        "documentation": {}
+    },
+    {
+        "label": "server_client",
+        "importPath": "client",
+        "description": "client",
+        "isExtraImport": true,
+        "detail": "client",
+        "documentation": {}
+    },
+    {
+        "label": "server_client",
+        "importPath": "client",
+        "description": "client",
+        "isExtraImport": true,
+        "detail": "client",
+        "documentation": {}
+    },
+    {
         "label": "site",
         "kind": 6,
         "isExtraImport": true,
@@ -1045,6 +1119,33 @@
         "description": "api.migrations.0001_initial",
         "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='UploadFile',\n            fields=[\n                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('file', models.FileField(upload_to='files/')),",
         "detail": "api.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "check_allergies",
+        "kind": 2,
+        "importPath": "api.allergies",
+        "description": "api.allergies",
+        "peekOfCode": "def check_allergies(ingredients):\n    allergies = []\n    for allergen, allergen_ingredients in allergy_dict.items():\n        for ingredient in allergen_ingredients:\n            if ingredient in ingredients.lower():\n                allergies.append(allergen)\n                break\n    # print(allergies)\n    return allergies\n# check_allergies(\"CHEDDAR CHEESE AGED OVER 100 DAYS (CULTURED UNPASTEURIZED MILK, SALT, ENZYMES), WATER, WHEY, CREAM, TOMATO FLAKES, BASIL, LACTIC ACID. benne\")",
+        "detail": "api.allergies",
+        "documentation": {}
+    },
+    {
+        "label": "get_top_three",
+        "kind": 2,
+        "importPath": "api.allergies",
+        "description": "api.allergies",
+        "peekOfCode": "def get_top_three(micros):\n    new_mapping = {}\n    for key in micros:\n        value = micros[key][\"value\"]\n        unit = micros[key][\"unit\"]\n        if unit == \"mg\":\n            new_mapping[key] = value\n        elif unit == \"µg\":\n            new_mapping[key] = value / 1000\n        elif unit == \"iu\":",
+        "detail": "api.allergies",
+        "documentation": {}
+    },
+    {
+        "label": "allergy_dict",
+        "kind": 5,
+        "importPath": "api.allergies",
+        "description": "api.allergies",
+        "peekOfCode": "allergy_dict = {\n    \"dairy\": ['milk', 'cheese', 'yogurt', 'butter', 'cream', 'sour cream', 'custard', 'evaporated milk', 'condensed milk', 'buttermilk', 'ice cream', 'pudding'],\n    \"tree-nuts\": ['almonds', 'brazil nuts', 'cashews', 'chestnuts', 'filberts', 'hazelnuts', 'hickory nuts', 'macademia', 'pecans', 'pistachios', 'walnuts', 'ginkgo'],\n    \"soy-bean\": ['soybean', 'soy flour', 'soy drink', 'tofu', 'tempeh', 'soy yogurt', 'soy bread', 'soy sauce'],\n    \"shell-fish\": ['crab', 'crayfish', 'lobster', 'shrimp', 'prawns', 'scallops', 'squid', 'mussels', 'snails', 'clams', 'oysters', 'octopus'],\n    \"fish\": ['abalone', 'anchovy', 'arctic char', 'barracuda', 'barramundi', 'bass', 'bass blue gill', 'bass sea', 'bass lake', 'bass striped', 'bass drum', 'black sea bass', 'bluefish', 'bluenose', 'bullhead', 'butterfish', 'capelin', 'carp', 'catfish', 'caviar', 'chilean seabass', 'chub', 'clam', 'cobia', 'cod', 'conch', 'corvina', 'crab', 'crayfish', 'croaker', 'cusk', 'dab', 'drum', 'eel', 'escolar', 'flounder', 'gray sole', 'greater amberjack', 'grenadier', 'grouper', 'haddock', 'hake', 'halfmoon fish', 'halibut', 'harvest fish', 'herring', 'imitation crab', 'jellyfish', 'lingcod', 'lobster', 'mackerel atlantic', 'mackerel spanish', 'mahi mahi', 'marlin', 'monkfish', 'mullet', 'muskellunge', 'mussels', 'ocean pout', 'octopus', 'opah', 'opaleye', 'orange roughy', 'oyster', 'pangasius', 'parrotfish', 'perch', 'perch ocean', 'pickerel', 'pike', 'pilchards', 'plaice', 'pomfret', 'pompano', 'pollock', 'porgy', 'red porgy', 'red snapper', 'rockfish', 'rosefish', 'sablefish', 'salmon atlantic', 'salmon chinook', 'salmon sockeye', 'sanddabs', 'sardine', 'scab', 'scallops', 'scrod', 'scup', 'sea beam', 'sea urchin', 'seatrout', 'shad', 'shark', 'sheepshead fish', 'shrimp', 'skate', 'smelt spearfish', 'snail', 'sole', 'squid', 'striped bass', 'sturgeon', 'sucker', 'sunfish', 'swai', 'swordfish', 'tatoaba', 'tilapia', 'tilefish', 'trout rainbow', 'trout sea', 'trout steelhead', 'tuna albacore', 'tuna bigeye', 'tuna blackfin', 'tuna bluefin', 'tuna tongol', 'tuna yellowfin', 'tuna', 'turbot', 'wahoo', 'walleye', 'weakfish', 'white seabass', 'whitefish', 'whiting', 'wolfish atlantic', 'wreckfish', 'yellowtail'],\n    \"egg\": [\"albumin\",    \"apovitellin\",    \"cholesterol-free egg substitute\",    \"dried egg solids\",    \"egg\",    \"egg wash\",    \"eggnog\",    \"fat substitutes\",    \"globulin\",    \"livetin\",    \"lysozyme\",    \"mayonnaise\",    \"meringue\",    \"ovalbumin\",    \"ovoglobulin\",    \"ovomucin\",    \"ovomucoid\",    \"ovotransferrin\",    \"ovovitelia\",    \"ovovitellin\",    \"powdered eggs\",    \"silici albuminate\",    \"simplesse\",    \"surimi\",    \"trailblazer\",    \"vitellin\",    \"whole egg\",    \"dried egg\",    \"egg white\",    \"egg yolk\",    \"egg solids\",    \"meringue powder\"],\n    \"sesame\": ['benne', 'gingelly', 'gomasio', 'sesame flour', 'sesame oil', 'sesame paste', 'sesame salt', 'sesame seed', 'sesamol', 'sesemolina', 'sesamum indicum', 'sim sim', 'tahini, tahina, tehina', 'til', 'benne seed', 'benniseed', 'sesamum', 'sesame salt', 'gingelly oil'],\n    \"peanut\": ['arachic oil', 'arachis', 'arachis hypogaea', 'artificial nuts', 'beer nuts', 'boiled peanuts', 'peanut oil', 'crushed nuts', 'earth nuts', 'goober peas', 'ground nuts', 'hydrolyzed peanut protein', 'mandelonas', 'mixed nuts', 'monkey nuts', 'nu nuts flavored nuts', 'nut pieces', 'nutmeat', 'peanuts', 'peanut flour', 'peanut paste', 'peanut sauce', 'spanish peanuts', 'virginia peanuts', 'crushed peanuts', 'ground peanuts', 'peanut butter', 'peanut butter chips', 'peanut butter morsels', 'peanut syrup'],\n    \"wheat\": ['white flour',",
+        "detail": "api.allergies",
         "documentation": {}
     },
     {
@@ -1097,7 +1198,7 @@
         "kind": 5,
         "importPath": "api.urls",
         "description": "api.urls",
-        "peekOfCode": "urlpatterns = [\n    path('nutritionExtract/', views.nutritionExtract, name='home'),\n     path('ingredientExtract/', views.ingredientExtract, name='ingredient'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('nutritionExtract/', views.nutritionExtract, name='home'),\n     path('ingredientExtract/', views.ingredientExtract, name='ingredient'),\n     path('product/', views.process_new_product, name='product'),\n]",
         "detail": "api.urls",
         "documentation": {}
     },
@@ -1106,7 +1207,7 @@
         "kind": 2,
         "importPath": "api.views",
         "description": "api.views",
-        "peekOfCode": "def nutritionExtract(request):\n\tif request.method == 'POST':\n\t\tnew_file = UploadFile(file = request.FILES['image'])\n\t\tnew_file.save()\n\t\tname = new_file.file.name\n\t\tresponse = detect_all(name, False)\n\t\tos.remove(file_path)\n\t\tfile_path=new_file.file.path\n\t\treturn JsonResponse(response)\n@csrf_exempt\t",
+        "peekOfCode": "def nutritionExtract(request):\n    if request.method == 'POST':\n        new_file = UploadFile(file=request.FILES['image'])\n        new_file.save()\n        file_path = new_file.file.path\n        name = new_file.file.name\n        response = detect_all(name, False)\n        os.remove(file_path)\n        file_path = new_file.file.path\n        return JsonResponse(response)",
         "detail": "api.views",
         "documentation": {}
     },
@@ -1115,70 +1216,16 @@
         "kind": 2,
         "importPath": "api.views",
         "description": "api.views",
-        "peekOfCode": "def ingredientExtract(request):\n\tif request.method == 'POST':\n\t\tnew_file = UploadFile(file = request.FILES['image'])\n\t\tnew_file.save()\n\t\t# Delete the file from the server\n\t\t# extract_ingredients_from_image(request.FILES['image'])\n\t\tname = new_file.file.name\n\t\tfile_path=new_file.file.path\n\t\twith io.open(file_path, 'rb') as img:\n\t\t\tfile_data =img.read()",
+        "peekOfCode": "def ingredientExtract(request):\n    if request.method == 'POST':\n        new_file = UploadFile(file=request.FILES['image'])\n        new_file.save()\n        # Delete the file from the server\n        # extract_ingredients_from_image(request.FILES['image'])\n        name = new_file.file.name\n        file_path = new_file.file.path\n        with io.open(file_path, 'rb') as img:\n            file_data = img.read()",
         "detail": "api.views",
         "documentation": {}
     },
     {
-        "label": "\t\tnew_file",
-        "kind": 5,
+        "label": "process_new_product",
+        "kind": 2,
         "importPath": "api.views",
         "description": "api.views",
-        "peekOfCode": "\t\tnew_file = UploadFile(file = request.FILES['image'])\n\t\tnew_file.save()\n\t\tname = new_file.file.name\n\t\tresponse = detect_all(name, False)\n\t\tos.remove(file_path)\n\t\tfile_path=new_file.file.path\n\t\treturn JsonResponse(response)\n@csrf_exempt\t\ndef ingredientExtract(request):\n\tif request.method == 'POST':",
-        "detail": "api.views",
-        "documentation": {}
-    },
-    {
-        "label": "\t\tname",
-        "kind": 5,
-        "importPath": "api.views",
-        "description": "api.views",
-        "peekOfCode": "\t\tname = new_file.file.name\n\t\tresponse = detect_all(name, False)\n\t\tos.remove(file_path)\n\t\tfile_path=new_file.file.path\n\t\treturn JsonResponse(response)\n@csrf_exempt\t\ndef ingredientExtract(request):\n\tif request.method == 'POST':\n\t\tnew_file = UploadFile(file = request.FILES['image'])\n\t\tnew_file.save()",
-        "detail": "api.views",
-        "documentation": {}
-    },
-    {
-        "label": "\t\tresponse",
-        "kind": 5,
-        "importPath": "api.views",
-        "description": "api.views",
-        "peekOfCode": "\t\tresponse = detect_all(name, False)\n\t\tos.remove(file_path)\n\t\tfile_path=new_file.file.path\n\t\treturn JsonResponse(response)\n@csrf_exempt\t\ndef ingredientExtract(request):\n\tif request.method == 'POST':\n\t\tnew_file = UploadFile(file = request.FILES['image'])\n\t\tnew_file.save()\n\t\t# Delete the file from the server",
-        "detail": "api.views",
-        "documentation": {}
-    },
-    {
-        "label": "\t\tnew_file",
-        "kind": 5,
-        "importPath": "api.views",
-        "description": "api.views",
-        "peekOfCode": "\t\tnew_file = UploadFile(file = request.FILES['image'])\n\t\tnew_file.save()\n\t\t# Delete the file from the server\n\t\t# extract_ingredients_from_image(request.FILES['image'])\n\t\tname = new_file.file.name\n\t\tfile_path=new_file.file.path\n\t\twith io.open(file_path, 'rb') as img:\n\t\t\tfile_data =img.read()\n\t\t\tfile_base64 = base64.b64encode(file_data).decode('utf-8')\n            # Convert the file to base64",
-        "detail": "api.views",
-        "documentation": {}
-    },
-    {
-        "label": "\t\tname",
-        "kind": 5,
-        "importPath": "api.views",
-        "description": "api.views",
-        "peekOfCode": "\t\tname = new_file.file.name\n\t\tfile_path=new_file.file.path\n\t\twith io.open(file_path, 'rb') as img:\n\t\t\tfile_data =img.read()\n\t\t\tfile_base64 = base64.b64encode(file_data).decode('utf-8')\n            # Convert the file to base64\n\t\t\tresponse = extract_ingredients_from_image(file_base64)\n\t\t\tdict={\"ingredients\":response}\n\t\t\tos.remove(file_path)\n\t\t\treturn JsonResponse(dict)",
-        "detail": "api.views",
-        "documentation": {}
-    },
-    {
-        "label": "\t\t\tfile_base64",
-        "kind": 5,
-        "importPath": "api.views",
-        "description": "api.views",
-        "peekOfCode": "\t\t\tfile_base64 = base64.b64encode(file_data).decode('utf-8')\n            # Convert the file to base64\n\t\t\tresponse = extract_ingredients_from_image(file_base64)\n\t\t\tdict={\"ingredients\":response}\n\t\t\tos.remove(file_path)\n\t\t\treturn JsonResponse(dict)",
-        "detail": "api.views",
-        "documentation": {}
-    },
-    {
-        "label": "\t\t\tresponse",
-        "kind": 5,
-        "importPath": "api.views",
-        "description": "api.views",
-        "peekOfCode": "\t\t\tresponse = extract_ingredients_from_image(file_base64)\n\t\t\tdict={\"ingredients\":response}\n\t\t\tos.remove(file_path)\n\t\t\treturn JsonResponse(dict)",
+        "peekOfCode": "def process_new_product(request):\n    if request.method == 'POST':\n        csv_filename = \"api/Dataset analysis.csv\"\n        all_nutrients = []\n        all_nutrients_mapping = {}\n        unit_mapping = {}\n        print(\"===\", request)\n        body_unicode = request.body.decode('utf-8')\n        body = json.loads(body_unicode)\n        data = body[\"data\"]",
         "detail": "api.views",
         "documentation": {}
     },
@@ -3448,6 +3495,33 @@
         "description": "off-nutrition-table-extractor.wsgi",
         "peekOfCode": "application = get_wsgi_application()",
         "detail": "off-nutrition-table-extractor.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "schema",
+        "kind": 5,
+        "importPath": "process_product.client",
+        "description": "process_product.client",
+        "peekOfCode": "schema = {\n    \"name\": \"WaitlistProducts\",\n    \"fields\": [\n        {\"name\": \"fdcId\", \"type\": \"string\"},\n         {\"name\": \"addedBy\", \"type\": \"string\"},\n        {\"name\": \"topThree\", \"type\": \"string[]\"},\n        {\"name\": \"dataType\", \"type\": \"string\",\"sort\":True},\n        {\"name\": \"description\", \"type\": \"string\", \"token_separators\": [\",\", \".\"]},\n        {\"name\": \".*\", \"type\": \"auto\"},\n    ],",
+        "detail": "process_product.client",
+        "documentation": {}
+    },
+    {
+        "label": "local_client",
+        "kind": 5,
+        "importPath": "process_product.client",
+        "description": "process_product.client",
+        "peekOfCode": "local_client = typesense.Client(\n    {\n        \"nodes\": [\n            {\n                'host': 'localhost',  # For Typesense Cloud use xxx.a1.typesense.net\n                \"port\": \"8108\",  # For Typesense Cloud use 443\n                \"protocol\": \"http\",  # For Typesense Cloud use https\n            }\n        ],\n          'api_key': 'xyz',",
+        "detail": "process_product.client",
+        "documentation": {}
+    },
+    {
+        "label": "server_client",
+        "kind": 5,
+        "importPath": "process_product.client",
+        "description": "process_product.client",
+        "peekOfCode": "server_client = typesense.Client(\n    {\n        \"nodes\": [\n            {\n                \"host\": \"13.232.135.140\",\n                \"port\": \"8108\",  # For Typesense Cloud use 443\n                \"protocol\": \"http\",  # For Typesense Cloud use https\n            }\n        ],\n        \"api_key\": \"fQqH5u29cQZPHUYQ8FeVp8FIOVWfKmHiH368hImsqTdfScwS\",",
+        "detail": "process_product.client",
         "documentation": {}
     },
     {
