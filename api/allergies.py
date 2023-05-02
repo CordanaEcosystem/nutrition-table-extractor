@@ -122,3 +122,32 @@ def get_top_three(micros):
     my_keys = [key for key, val in most_common]
 
     return my_keys
+Dv_values={
+    "Calcium": {"amount": 1300, "unit": "mg"},
+    "Magnesium": {"amount": 420, "unit": "mg"},
+    "Manganese": {"amount": 2.3, "unit": "mg"},
+    "Phosphorous": {"amount": 1250, "unit": "mg"},
+    "Potassium": {"amount": 4700, "unit": "mg"},
+    "Vitamin C": {"amount": 90, "unit": "mg"},
+    "Vitamin D": {"amount": 800, "unit": "IU"},
+    "Vitamin K": {"amount": 120, "unit": "µg"},
+    "Vitamin B-7": {"amount": 30, "unit": "µg"},
+    "Chloride": {"amount": 2300, "unit": "mg"},
+    "Chromium": {"amount": 35, "unit": "µg"},
+    "Copper": {"amount": 900, "unit": "µg"},
+    "Vitamin B-9": {"amount": 400, "unit": "µg"},
+    "Molybdenum": {"amount": 45, "unit": "µg"},
+    "Vitamin B-3": {"amount": 16, "unit": "mg"},
+    "Vitamin B-5": {"amount": 5, "unit": "mg"},
+    "Vitamin B-2": {"amount": 1.3, "unit": "mg"},
+    "Selenium": {"amount": 55, "unit": "µg"},
+    "Sodium": {"amount": 2300, "unit": "mg"},
+    "Vitamin B-1": {"amount": 1.2, "unit": "mg"},
+    "Vitamin A": {"amount": 3000, "unit": "IU"},
+    "Vitamin B-12": {"amount": 2.4, "unit": "µg"},
+    "Vitamin E": {"amount": 15, "unit": "mg"},
+    "Zinc": {"amount": 11, "unit": "mg"},
+    "Iodine": {"amount": 150, "unit": "µg"},
+    "Iron": {"amount": 18, "unit": "mg"},
+    "Vitamin B-6": {"amount": 1.7, "unit": "mg"}
+}

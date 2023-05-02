@@ -5,7 +5,7 @@ from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from ingredient_extractor.vision import extract_ingredients_from_image
 from process_product.client import server_client
-from .allergies import check_allergies,get_top_three
+from .allergies import check_allergies,get_top_three,Dv_values
 from .models import *
 from .forms import UploadFileForm
 import cv2
@@ -29,7 +29,7 @@ def nutritionExtract(request):
         new_file.save()
         file_path = new_file.file.path
         name = new_file.file.name
-        response = detect_all(name, False)
+        response = detect_all(name, True)
         os.remove(file_path)
         file_path = new_file.file.path
 
@@ -101,9 +101,15 @@ def process_new_product(request):
                 value = record["amount"]
 
                 print("222",value)
-               
-
-                nutrients[result["category"]][result["new_name"]] = {
+                if(record["unitName"].strip()=="%" and Dv_values.get(result["new_name"])):
+                    value = Dv_values.get(result["new_name"]).get("amount")*value/100
+                    nutrients[result["category"]][result["new_name"]] = {
+                            "value": value,
+                            "unit":  Dv_values.get(result["new_name"]).get("unit")
+                        }
+                    # print("<<<<<",Dv_values.get(result["new_name"]).get("unit"))
+                else:
+                 nutrients[result["category"]][result["new_name"]] = {
                             "value": value,
                             "unit": record["unitName"]
                         }
