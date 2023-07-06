@@ -1,4 +1,10 @@
 import typesense
+
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+TYPESENSE_API_KEY = os.getenv("TYPESENSE_API_KEY")
 schema = {
     "name": "WaitlistProducts",
     "fields": [
@@ -31,14 +37,14 @@ server_client = typesense.Client(
     {
         "nodes": [
             {
-                "host": "13.232.135.140",
-              
+                
+                'host': 'localhost',  # For Typesense Cloud use xxx.a1.typesense.net
                 "port": "8108",  # For Typesense Cloud use 443
                 "protocol": "http",  # For Typesense Cloud use https
             }
         ],
-        "api_key": "fQqH5u29cQZPHUYQ8FeVp8FIOVWfKmHiH368hImsqTdfScwS",
-     
+   
+          'api_key': TYPESENSE_API_KEY,
         "connection_timeout_seconds": 200,
     }
 )
