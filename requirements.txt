@@ -13,3 +13,4 @@ Pillow==7.2.0
 protobuf==3.12.4
 PyYAML==5.3.1
  pip install Pillow pytesseract opencv-python-headless easydict cython scipy protobuf tensorflow-macos matplotlib
+ sudo apt-get install libleptonica-dev tesseract-ocr tesseract-ocr-dev libtesseract-dev python3-pil tesseract-ocr-eng tesseract-ocr-script-latn
