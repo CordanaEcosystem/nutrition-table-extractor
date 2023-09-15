@@ -12,13 +12,45 @@ from regex import *
 from nutrient_list import *
 from spacial_map import *
 from matplotlib import pyplot as plt 
+import threading
+sync_event = threading.Event()
+
+class DetectionThread(threading.Thread):
+    def __init__(self, img_path, debug, firstCall):
+        super().__init__()
+        self.img_path = img_path
+        self.debug = debug
+        self.firstCall = firstCall
+        self.result = None
+
+    def run(self):
+        # Call the detect function
+        self.result = detect(self.img_path, self.debug, self.firstCall)
+
 def detect_all(img_path, debug):
-    dict1=detect(img_path, debug,True)
-    print("first scan :",dict1)
-    dict2=detect("./data/result/second-input.jpg", debug,False)
-    print("second scan :",dict2)
-    print("final result :",{**dict2,**dict1})
-    return {**dict2,**dict1}
+    # Create and start the first detection thread
+    thread1 = DetectionThread(img_path, debug, True)
+    thread1.start()
+
+    # Wait for the first synchronization point in the first detection
+    sync_event.wait()
+
+    # Start the second detection in a separate thread
+    thread2 = DetectionThread("./data/result/second-input.jpg", debug, False)
+    thread2.start()
+    
+    # Wait for both detections to finish
+    thread1.join()
+    thread2.join()
+
+    # Get the results from both detections
+    dict1 = thread1.result
+    dict2 = thread2.result
+
+    print("first scan:", dict1)
+    print("second scan:", dict2)
+    print("final result:", {**dict2, **dict1})
+    return {**dict2, **dict1}
 def load_model():
     """
     load trained weights for the model
@@ -60,8 +92,9 @@ def detect(img_path, debug,firstCall=False):
     #Crop the image with the given bounding box
     if(firstCall):
         cropped_image = crop(image, coords, "./data/result/output.jpg", 0, True)
-
+        print("+++_+_+_+_firstcall",)
         cropped_image2= crop(image,(0,ymax-((height-ymax)/15),width,height),"./data/result/second-input.jpg", 0, True)
+        sync_event.set()
     else:
         cropped_image = crop(image, coords, "./data/result/output2.jpg", 0, True)
     #Apply several filters to the image for better results in OCR
@@ -85,8 +118,8 @@ def detect(img_path, debug,firstCall=False):
     #Apply OCR to to blobs and save data in organized dict
     for blob_cord in text_blob_list:
         if debug:
-            additional_text=""
-            if(firstCall==False):
+            additional_text="kkk"
+            if not firstCall:
                 additional_text="second"
             counter+=1
             word_image = crop(cropped_image, blob_cord, "./data/result/{}{}.jpg".format(additional_text,counter), 0, True)

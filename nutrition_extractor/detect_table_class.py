@@ -11,6 +11,7 @@ class NutritionTableDetector(object):
             with tf.gfile.GFile(PATH_TO_MODEL, 'rb') as fid:
                 serialized_graph = fid.read()
                 od_graph_def.ParseFromString(serialized_graph)
+                # print("--------graph",serialized_graph)
                 tf.import_graph_def(od_graph_def, name='')
             self.image_tensor = self.detection_graph.get_tensor_by_name('image_tensor:0')
             self.d_boxes = self.detection_graph.get_tensor_by_name('detection_boxes:0')
@@ -27,4 +28,5 @@ class NutritionTableDetector(object):
             (boxes, scores, classes, num) = self.sess.run(
                 [self.d_boxes, self.d_scores, self.d_classes, self.num_d],
                 feed_dict={self.image_tensor: img_expanded})
+            print("----",boxes)
         return boxes, scores, classes, num

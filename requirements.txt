@@ -1,16 +1,36 @@
-matplotlib==2.1.1
-six==1.11.0
-opencv_contrib_python==4.3.0.36
-scipy==1.4.1
-pytesseract==0.3.4
-numpy==1.13.3
-tensorflow==1.14.0
-Cython==0.29.21
-easydict==1.9
-ipython==7.17.0
-object-detection==0.0.3
-Pillow==7.2.0
-protobuf==3.12.4
-PyYAML==5.3.1
- pip install Pillow pytesseract opencv-python-headless easydict cython scipy protobuf tensorflow-macos matplotlib
- sudo apt-get install libleptonica-dev tesseract-ocr tesseract-ocr-dev libtesseract-dev python3-pil tesseract-ocr-eng tesseract-ocr-script-latn
+Pillow
+pytesseract
+ultralytics
+opencv-python-headless
+easydict
+cython
+scipy
+protobuf
+matplotlib
+six
+opencv_contrib_python
+numpy
+tensorflow
+ipython
+object-detection
+django==4.2.5
+gunicorn
+
+# matplotlib==2.1.1
+# six==1.11.0
+# opencv_contrib_python==4.3.0.36
+# scipy==1.4.1
+# pytesseract==0.3.4
+# numpy==1.13.3
+# tensorflow==1.14.0
+# Cython==0.29.21
+# easydict==1.9
+# ipython==7.17.0
+# object-detection==0.0.3
+# Pillow==7.2.0
+# protobuf==3.12.4
+# PyYAML==5.3.1
+
+
+#  pip install Pillow pytesseract opencv-python-headless easydict cython scipy protobuf tensorflow-macos matplotlib
+#  sudo apt-get install libleptonica-dev tesseract-ocr tesseract-ocr-dev libtesseract-dev python3-pil tesseract-ocr-eng tesseract-ocr-script-latn

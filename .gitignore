@@ -9,3 +9,4 @@ ingredient_extractor/test_images/*
 files/*
 nutrition_extractor/data/result
 *.pyc
+.env

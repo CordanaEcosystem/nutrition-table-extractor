@@ -223,14 +223,6 @@
         "documentation": {}
     },
     {
-        "label": "server_client",
-        "importPath": "process_product.client",
-        "description": "process_product.client",
-        "isExtraImport": true,
-        "detail": "process_product.client",
-        "documentation": {}
-    },
-    {
         "label": "cv2",
         "kind": 6,
         "isExtraImport": true,
@@ -972,6 +964,15 @@
         "documentation": {}
     },
     {
+        "label": "threading",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "threading",
+        "description": "threading",
+        "detail": "threading",
+        "documentation": {}
+    },
+    {
         "label": "difflib",
         "kind": 6,
         "isExtraImport": true,
@@ -1052,55 +1053,6 @@
         "description": "django.core.wsgi",
         "isExtraImport": true,
         "detail": "django.core.wsgi",
-        "documentation": {}
-    },
-    {
-        "label": "typesense",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "typesense",
-        "description": "typesense",
-        "detail": "typesense",
-        "documentation": {}
-    },
-    {
-        "label": "server_client",
-        "importPath": "client",
-        "description": "client",
-        "isExtraImport": true,
-        "detail": "client",
-        "documentation": {}
-    },
-    {
-        "label": "schema",
-        "importPath": "client",
-        "description": "client",
-        "isExtraImport": true,
-        "detail": "client",
-        "documentation": {}
-    },
-    {
-        "label": "server_client",
-        "importPath": "client",
-        "description": "client",
-        "isExtraImport": true,
-        "detail": "client",
-        "documentation": {}
-    },
-    {
-        "label": "server_client",
-        "importPath": "client",
-        "description": "client",
-        "isExtraImport": true,
-        "detail": "client",
-        "documentation": {}
-    },
-    {
-        "label": "server_client",
-        "importPath": "client",
-        "description": "client",
-        "isExtraImport": true,
-        "detail": "client",
         "documentation": {}
     },
     {
@@ -1198,7 +1150,7 @@
         "kind": 5,
         "importPath": "api.urls",
         "description": "api.urls",
-        "peekOfCode": "urlpatterns = [\n    path('nutritionExtract/', views.nutritionExtract, name='home'),\n     path('ingredientExtract/', views.ingredientExtract, name='ingredient'),\n     path('product/', views.process_new_product, name='product'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('nutritionExtract/', views.nutritionExtract, name='home'),\n    #  path('ingredientExtract/', views.ingredientExtract, name='ingredient'),\n    #  path('product/', views.process_new_product, name='product'),\n     path('health/', views.health, name='health'),\n]",
         "detail": "api.urls",
         "documentation": {}
     },
@@ -1207,25 +1159,16 @@
         "kind": 2,
         "importPath": "api.views",
         "description": "api.views",
-        "peekOfCode": "def nutritionExtract(request):\n    if request.method == 'POST':\n        new_file = UploadFile(file=request.FILES['image'])\n        new_file.save()\n        file_path = new_file.file.path\n        name = new_file.file.name\n        response = detect_all(name, True)\n        os.remove(file_path)\n        file_path = new_file.file.path\n        return JsonResponse(response)",
+        "peekOfCode": "def nutritionExtract(request):\n    if request.method == 'POST':\n        try:\n            if 'image' not in request.FILES:\n                return JsonResponse({\"error\": \"No 'image' file provided.\"}, status=400)\n            new_file = UploadFile(file=request.FILES['image'])\n            new_file.save()\n            file_path = new_file.file.path\n            name = new_file.file.name\n            response = detect_all(name, False)",
         "detail": "api.views",
         "documentation": {}
     },
     {
-        "label": "ingredientExtract",
+        "label": "health",
         "kind": 2,
         "importPath": "api.views",
         "description": "api.views",
-        "peekOfCode": "def ingredientExtract(request):\n    if request.method == 'POST':\n        new_file = UploadFile(file=request.FILES['image'])\n        new_file.save()\n        # Delete the file from the server\n        # extract_ingredients_from_image(request.FILES['image'])\n        name = new_file.file.name\n        file_path = new_file.file.path\n        with io.open(file_path, 'rb') as img:\n            file_data = img.read()",
-        "detail": "api.views",
-        "documentation": {}
-    },
-    {
-        "label": "process_new_product",
-        "kind": 2,
-        "importPath": "api.views",
-        "description": "api.views",
-        "peekOfCode": "def process_new_product(request):\n    if request.method == 'POST':\n        csv_filename = \"api/Dataset analysis.csv\"\n        all_nutrients = []\n        all_nutrients_mapping = {}\n        unit_mapping = {}\n        print(\"===\", request)\n        body_unicode = request.body.decode('utf-8')\n        body = json.loads(body_unicode)\n        data = body[\"data\"]",
+        "peekOfCode": "def health(request):\n        try:\n            response={\"status\":\"ok\"}\n            return JsonResponse(response)\n        except FileNotFoundError as e:\n            return JsonResponse({\"error\": f\"FileNotFoundError: {e}\"}, status=500)\n        except Exception as e:\n            return JsonResponse({\"error\": str(e)}, status=500)\n# @csrf_exempt\n# def ingredientExtract(request):",
         "detail": "api.views",
         "documentation": {}
     },
@@ -2958,11 +2901,20 @@
         "documentation": {}
     },
     {
+        "label": "DetectionThread",
+        "kind": 6,
+        "importPath": "nutrition_extractor.detection",
+        "description": "nutrition_extractor.detection",
+        "peekOfCode": "class DetectionThread(threading.Thread):\n    def __init__(self, img_path, debug, firstCall):\n        super().__init__()\n        self.img_path = img_path\n        self.debug = debug\n        self.firstCall = firstCall\n        self.result = None\n    def run(self):\n        # Call the detect function\n        self.result = detect(self.img_path, self.debug, self.firstCall)",
+        "detail": "nutrition_extractor.detection",
+        "documentation": {}
+    },
+    {
         "label": "detect_all",
         "kind": 2,
         "importPath": "nutrition_extractor.detection",
         "description": "nutrition_extractor.detection",
-        "peekOfCode": "def detect_all(img_path, debug):\n    dict1=detect(img_path, debug,True)\n    print(\"first scan :\",dict1)\n    dict2=detect(\"./data/result/second-input.jpg\", debug,False)\n    print(\"second scan :\",dict2)\n    print(\"final result :\",{**dict2,**dict1})\n    return {**dict2,**dict1}\ndef load_model():\n    \"\"\"\n    load trained weights for the model",
+        "peekOfCode": "def detect_all(img_path, debug):\n    # Create and start the first detection thread\n    thread1 = DetectionThread(img_path, debug, True)\n    thread1.start()\n    # Wait for the first synchronization point in the first detection\n    sync_event.wait()\n    # Start the second detection in a separate thread\n    thread2 = DetectionThread(\"./data/result/second-input.jpg\", debug, False)\n    thread2.start()\n    # Wait for both detections to finish",
         "detail": "nutrition_extractor.detection",
         "documentation": {}
     },
@@ -2990,6 +2942,15 @@
         "importPath": "nutrition_extractor.detection",
         "description": "nutrition_extractor.detection",
         "peekOfCode": "def main():\n    ap = argparse.ArgumentParser()\n    ap.add_argument(\"-i\", \"--image\", required=True, help=\"path to the input image\")\n    ap.add_argument(\"-d\", \"--debug\", action='store_true', help=\"print some debug info\")\n    args = ap.parse_args()\n    if args.debug:\n# get the current working directory\n        current_directory = os.getcwd()\n# specify the relative path of the folder to be emptied\n        folder_name = 'data/result'",
+        "detail": "nutrition_extractor.detection",
+        "documentation": {}
+    },
+    {
+        "label": "sync_event",
+        "kind": 5,
+        "importPath": "nutrition_extractor.detection",
+        "description": "nutrition_extractor.detection",
+        "peekOfCode": "sync_event = threading.Event()\nclass DetectionThread(threading.Thread):\n    def __init__(self, img_path, debug, firstCall):\n        super().__init__()\n        self.img_path = img_path\n        self.debug = debug\n        self.firstCall = firstCall\n        self.result = None\n    def run(self):\n        # Call the detect function",
         "detail": "nutrition_extractor.detection",
         "documentation": {}
     },
@@ -3498,33 +3459,6 @@
         "documentation": {}
     },
     {
-        "label": "schema",
-        "kind": 5,
-        "importPath": "process_product.client",
-        "description": "process_product.client",
-        "peekOfCode": "schema = {\n    \"name\": \"WaitlistProducts\",\n    \"fields\": [\n        {\"name\": \"fdcId\", \"type\": \"string\"},\n         {\"name\": \"addedBy\", \"type\": \"string\"},\n        {\"name\": \"topThree\", \"type\": \"string[]\"},\n        {\"name\": \"dataType\", \"type\": \"string\",\"sort\":True},\n        {\"name\": \"description\", \"type\": \"string\", \"token_separators\": [\",\", \".\"]},\n        {\"name\": \".*\", \"type\": \"auto\"},\n    ],",
-        "detail": "process_product.client",
-        "documentation": {}
-    },
-    {
-        "label": "local_client",
-        "kind": 5,
-        "importPath": "process_product.client",
-        "description": "process_product.client",
-        "peekOfCode": "local_client = typesense.Client(\n    {\n        \"nodes\": [\n            {\n                'host': 'localhost',  # For Typesense Cloud use xxx.a1.typesense.net\n                \"port\": \"8108\",  # For Typesense Cloud use 443\n                \"protocol\": \"http\",  # For Typesense Cloud use https\n            }\n        ],\n          'api_key': 'xyz',",
-        "detail": "process_product.client",
-        "documentation": {}
-    },
-    {
-        "label": "server_client",
-        "kind": 5,
-        "importPath": "process_product.client",
-        "description": "process_product.client",
-        "peekOfCode": "server_client = typesense.Client(\n    {\n        \"nodes\": [\n            {\n                \"host\": \"13.232.135.140\",\n                \"port\": \"8108\",  # For Typesense Cloud use 443\n                \"protocol\": \"http\",  # For Typesense Cloud use https\n            }\n        ],\n        \"api_key\": \"fQqH5u29cQZPHUYQ8FeVp8FIOVWfKmHiH368hImsqTdfScwS\",",
-        "detail": "process_product.client",
-        "documentation": {}
-    },
-    {
         "label": "bin_dir",
         "kind": 5,
         "importPath": "venv.bin.activate_this",
@@ -3594,6 +3528,15 @@
         "description": "venv.bin.activate_this",
         "peekOfCode": "sys.prefix = base",
         "detail": "venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "timeout",
+        "kind": 5,
+        "importPath": "gunicorn_config",
+        "description": "gunicorn_config",
+        "peekOfCode": "timeout = 60  # Set the timeout to 60 seconds",
+        "detail": "gunicorn_config",
         "documentation": {}
     }
 ]
