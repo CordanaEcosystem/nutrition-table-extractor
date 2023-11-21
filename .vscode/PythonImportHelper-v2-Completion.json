@@ -223,6 +223,14 @@
         "documentation": {}
     },
     {
+        "label": "server_client",
+        "importPath": "process_product.client",
+        "description": "process_product.client",
+        "isExtraImport": true,
+        "detail": "process_product.client",
+        "documentation": {}
+    },
+    {
         "label": "cv2",
         "kind": 6,
         "isExtraImport": true,
@@ -1056,12 +1064,36 @@
         "documentation": {}
     },
     {
-        "label": "site",
+        "label": "typesense",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "site",
-        "description": "site",
-        "detail": "site",
+        "importPath": "typesense",
+        "description": "typesense",
+        "detail": "typesense",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "server_client",
+        "importPath": "client",
+        "description": "client",
+        "isExtraImport": true,
+        "detail": "client",
+        "documentation": {}
+    },
+    {
+        "label": "schema",
+        "importPath": "client",
+        "description": "client",
+        "isExtraImport": true,
+        "detail": "client",
         "documentation": {}
     },
     {
@@ -1150,7 +1182,7 @@
         "kind": 5,
         "importPath": "api.urls",
         "description": "api.urls",
-        "peekOfCode": "urlpatterns = [\n    path('nutritionExtract/', views.nutritionExtract, name='home'),\n    #  path('ingredientExtract/', views.ingredientExtract, name='ingredient'),\n    #  path('product/', views.process_new_product, name='product'),\n     path('health/', views.health, name='health'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('nutritionExtract/', views.nutritionExtract, name='home'),\n     path('ingredientExtract/', views.ingredientExtract, name='ingredient'),\n     path('product/', views.process_new_product, name='product'),\n     path('health/', views.health, name='health'),\n]",
         "detail": "api.urls",
         "documentation": {}
     },
@@ -1168,7 +1200,25 @@
         "kind": 2,
         "importPath": "api.views",
         "description": "api.views",
-        "peekOfCode": "def health(request):\n        try:\n            response={\"status\":\"ok\"}\n            return JsonResponse(response)\n        except FileNotFoundError as e:\n            return JsonResponse({\"error\": f\"FileNotFoundError: {e}\"}, status=500)\n        except Exception as e:\n            return JsonResponse({\"error\": str(e)}, status=500)\n# @csrf_exempt\n# def ingredientExtract(request):",
+        "peekOfCode": "def health(request):\n        try:\n            response={\"status\":\"ok\"}\n            return JsonResponse(response)\n        except FileNotFoundError as e:\n            return JsonResponse({\"error\": f\"FileNotFoundError: {e}\"}, status=500)\n        except Exception as e:\n            return JsonResponse({\"error\": str(e)}, status=500)\n@csrf_exempt\ndef ingredientExtract(request):",
+        "detail": "api.views",
+        "documentation": {}
+    },
+    {
+        "label": "ingredientExtract",
+        "kind": 2,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "def ingredientExtract(request):\n    if request.method == 'POST':\n        try:\n            if 'image' not in request.FILES:\n                return JsonResponse({\"error\": \"No 'image' file provided.\"}, status=400)\n            new_file = UploadFile(file=request.FILES['image'])\n            new_file.save()\n            name = new_file.file.name\n            file_path = new_file.file.path\n            with io.open(file_path, 'rb') as img:",
+        "detail": "api.views",
+        "documentation": {}
+    },
+    {
+        "label": "process_new_product",
+        "kind": 2,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "def process_new_product(request):\n    if request.method == 'POST':\n        try:\n            csv_filename = \"api/Dataset analysis.csv\"\n            all_nutrients = []\n            all_nutrients_mapping = {}\n            unit_mapping = {}\n            body_unicode = request.body.decode('utf-8')\n            body = json.loads(body_unicode)\n            data = body[\"data\"]",
         "detail": "api.views",
         "documentation": {}
     },
@@ -3459,75 +3509,30 @@
         "documentation": {}
     },
     {
-        "label": "bin_dir",
+        "label": "TYPESENSE_API_KEY",
         "kind": 5,
-        "importPath": "venv.bin.activate_this",
-        "description": "venv.bin.activate_this",
-        "peekOfCode": "bin_dir = os.path.dirname(abs_file)\nbase = bin_dir[: -len(\"bin\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.10/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)",
-        "detail": "venv.bin.activate_this",
+        "importPath": "process_product.client",
+        "description": "process_product.client",
+        "peekOfCode": "TYPESENSE_API_KEY = os.getenv(\"TYPESENSE_API_KEY\")\nschema = {\n    \"name\": \"WaitlistProducts\",\n    \"fields\": [\n        {\"name\": \"fdcId\", \"type\": \"string\"},\n         {\"name\": \"addedBy\", \"type\": \"string\"},\n        {\"name\": \"topThree\", \"type\": \"string[]\"},\n        {\"name\": \"dataType\", \"type\": \"string\",\"sort\":True},\n        {\"name\": \"description\", \"type\": \"string\", \"token_separators\": [\",\", \".\"]},\n        {\"name\": \".*\", \"type\": \"auto\"},",
+        "detail": "process_product.client",
         "documentation": {}
     },
     {
-        "label": "base",
+        "label": "schema",
         "kind": 5,
-        "importPath": "venv.bin.activate_this",
-        "description": "venv.bin.activate_this",
-        "peekOfCode": "base = bin_dir[: -len(\"bin\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.10/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]",
-        "detail": "venv.bin.activate_this",
+        "importPath": "process_product.client",
+        "description": "process_product.client",
+        "peekOfCode": "schema = {\n    \"name\": \"WaitlistProducts\",\n    \"fields\": [\n        {\"name\": \"fdcId\", \"type\": \"string\"},\n         {\"name\": \"addedBy\", \"type\": \"string\"},\n        {\"name\": \"topThree\", \"type\": \"string[]\"},\n        {\"name\": \"dataType\", \"type\": \"string\",\"sort\":True},\n        {\"name\": \"description\", \"type\": \"string\", \"token_separators\": [\",\", \".\"]},\n        {\"name\": \".*\", \"type\": \"auto\"},\n    ],",
+        "detail": "process_product.client",
         "documentation": {}
     },
     {
-        "label": "os.environ[\"PATH\"]",
+        "label": "server_client",
         "kind": 5,
-        "importPath": "venv.bin.activate_this",
-        "description": "venv.bin.activate_this",
-        "peekOfCode": "os.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.10/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
-        "detail": "venv.bin.activate_this",
-        "documentation": {}
-    },
-    {
-        "label": "os.environ[\"VIRTUAL_ENV\"]",
-        "kind": 5,
-        "importPath": "venv.bin.activate_this",
-        "description": "venv.bin.activate_this",
-        "peekOfCode": "os.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.10/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
-        "detail": "venv.bin.activate_this",
-        "documentation": {}
-    },
-    {
-        "label": "prev_length",
-        "kind": 5,
-        "importPath": "venv.bin.activate_this",
-        "description": "venv.bin.activate_this",
-        "peekOfCode": "prev_length = len(sys.path)\nfor lib in \"../lib/python3.10/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
-        "detail": "venv.bin.activate_this",
-        "documentation": {}
-    },
-    {
-        "label": "sys.path[:]",
-        "kind": 5,
-        "importPath": "venv.bin.activate_this",
-        "description": "venv.bin.activate_this",
-        "peekOfCode": "sys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
-        "detail": "venv.bin.activate_this",
-        "documentation": {}
-    },
-    {
-        "label": "sys.real_prefix",
-        "kind": 5,
-        "importPath": "venv.bin.activate_this",
-        "description": "venv.bin.activate_this",
-        "peekOfCode": "sys.real_prefix = sys.prefix\nsys.prefix = base",
-        "detail": "venv.bin.activate_this",
-        "documentation": {}
-    },
-    {
-        "label": "sys.prefix",
-        "kind": 5,
-        "importPath": "venv.bin.activate_this",
-        "description": "venv.bin.activate_this",
-        "peekOfCode": "sys.prefix = base",
-        "detail": "venv.bin.activate_this",
+        "importPath": "process_product.client",
+        "description": "process_product.client",
+        "peekOfCode": "server_client = typesense.Client(\n    {\n        \"nodes\": [\n            {\n                'host': 'localhost',  # For Typesense Cloud use xxx.a1.typesense.net\n                \"port\": \"8108\",  # For Typesense Cloud use 443\n                \"protocol\": \"http\",  # For Typesense Cloud use https\n            }\n        ],\n          'api_key': TYPESENSE_API_KEY,",
+        "detail": "process_product.client",
         "documentation": {}
     },
     {
