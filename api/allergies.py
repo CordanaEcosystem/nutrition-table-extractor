@@ -1,12 +1,137 @@
-from collections import Counter
-
-
+import re
+others={
+    "dairy":['milk']
+}
 allergy_dict = {
-    "dairy": ['milk', 'cheese', 'yogurt', 'butter', 'cream', 'sour cream', 'custard', 'evaporated milk', 'condensed milk', 'buttermilk', 'ice cream', 'pudding'],
+    "dairy": [ 'cheese', 'yogurt', 'butter', 'cream', 'sour cream', 'custard', 'evaporated milk', 'condensed milk', 'buttermilk', 'ice cream', 'pudding'],
     "tree-nuts": ['almonds', 'brazil nuts', 'cashews', 'chestnuts', 'filberts', 'hazelnuts', 'hickory nuts', 'macademia', 'pecans', 'pistachios', 'walnuts', 'ginkgo'],
     "soy-bean": ['soybean', 'soy flour', 'soy drink', 'tofu', 'tempeh', 'soy yogurt', 'soy bread', 'soy sauce'],
     "shell-fish": ['crab', 'crayfish', 'lobster', 'shrimp', 'prawns', 'scallops', 'squid', 'mussels', 'snails', 'clams', 'oysters', 'octopus'],
-    "fish": ['abalone', 'anchovy', 'arctic char', 'barracuda', 'barramundi', 'bass', 'bass blue gill', 'bass sea', 'bass lake', 'bass striped', 'bass drum', 'black sea bass', 'bluefish', 'bluenose', 'bullhead', 'butterfish', 'capelin', 'carp', 'catfish', 'caviar', 'chilean seabass', 'chub', 'clam', 'cobia', 'cod', 'conch', 'corvina', 'crab', 'crayfish', 'croaker', 'cusk', 'dab', 'drum', 'eel', 'escolar', 'flounder', 'gray sole', 'greater amberjack', 'grenadier', 'grouper', 'haddock', 'hake', 'halfmoon fish', 'halibut', 'harvest fish', 'herring', 'imitation crab', 'jellyfish', 'lingcod', 'lobster', 'mackerel atlantic', 'mackerel spanish', 'mahi mahi', 'marlin', 'monkfish', 'mullet', 'muskellunge', 'mussels', 'ocean pout', 'octopus', 'opah', 'opaleye', 'orange roughy', 'oyster', 'pangasius', 'parrotfish', 'perch', 'perch ocean', 'pickerel', 'pike', 'pilchards', 'plaice', 'pomfret', 'pompano', 'pollock', 'porgy', 'red porgy', 'red snapper', 'rockfish', 'rosefish', 'sablefish', 'salmon atlantic', 'salmon chinook', 'salmon sockeye', 'sanddabs', 'sardine', 'scab', 'scallops', 'scrod', 'scup', 'sea beam', 'sea urchin', 'seatrout', 'shad', 'shark', 'sheepshead fish', 'shrimp', 'skate', 'smelt spearfish', 'snail', 'sole', 'squid', 'striped bass', 'sturgeon', 'sucker', 'sunfish', 'swai', 'swordfish', 'tatoaba', 'tilapia', 'tilefish', 'trout rainbow', 'trout sea', 'trout steelhead', 'tuna albacore', 'tuna bigeye', 'tuna blackfin', 'tuna bluefin', 'tuna tongol', 'tuna yellowfin', 'tuna', 'turbot', 'wahoo', 'walleye', 'weakfish', 'white seabass', 'whitefish', 'whiting', 'wolfish atlantic', 'wreckfish', 'yellowtail'],
+    "fish":  ["abalone",
+    "anchovy",
+    "arctic char",
+    "barracuda",
+    "barramundi",
+    "bass",
+    "bass blue gill",
+    "bass sea",
+    "bass lake",
+    "bass striped",
+    "bass drum",
+    "black sea bass",
+    "bluefish",
+    "bluenose",
+    "bullhead",
+    "butterfish",
+    "capelin",
+    "carp",
+    "catfish",
+    "caviar",
+    "chilean seabass",
+    "chub",
+    "clam",
+    "cobia",
+    "cod",
+    "conch",
+    "corvina",
+    "croaker",
+    "cusk",
+    "dab",
+    "drum",
+    "eel",
+    "escolar",
+    "flounder",
+    "gray sole",
+    "greater amberjack",
+    "grenadier",
+    "grouper",
+    "haddock",
+    "hake",
+    "halfmoon fish",
+    "halibut",
+    "harvest fish",
+    "herring",
+    "imitation crab",
+    "jellyfish",
+    "lingcod",
+    "mackerel atlantic",
+    "mackerel spanish",
+    "mahi mahi",
+    "marlin",
+    "monkfish",
+    "mullet",
+    "muskellunge",
+    "ocean pout",
+    "opah",
+    "opaleye",
+    "orange roughy",
+    "oyster",
+    "pangasius",
+    "parrotfish",
+    "perch",
+    "perch ocean",
+    "pickerel",
+    "pike",
+    "pilchards",
+    "plaice",
+    "pomfret",
+    "pompano",
+    "pollock",
+    "porgy",
+    "red porgy",
+    "red snapper",
+    "rockfish",
+    "rosefish",
+    "sablefish",
+    "salmon atlantic",
+    "salmon chinook",
+    "salmon sockeye",
+    "sanddabs",
+    "sardine",
+    "scab",
+    "scrod",
+    "scup",
+    "sea beam",
+    "sea urchin",
+    "seatrout",
+    "shad",
+    "shark",
+    "sheepshead fish",
+    "skate",
+    "smelt spearfish",
+    "snail",
+    "sole",
+    "striped bass",
+    "sturgeon",
+    "sucker",
+    "sunfish",
+    "swai",
+    "swordfish",
+    "tatoaba",
+    "tilapia",
+    "tilefish",
+    "trout rainbow",
+    "trout sea",
+    "trout steelhead",
+    "tuna albacore",
+    "tuna bigeye",
+    "tuna blackfin",
+    "tuna bluefin",
+    "tuna tongol",
+    "tuna yellowfin",
+    "tuna",
+    "turbot",
+    "wahoo",
+    "walleye",
+    "weakfish",
+    "white seabass",
+    "whitefish",
+    "whiting",
+    "wolfish atlantic",
+    "wreckfish",
+    "yellowtail"
+],
+
     "egg": ["albumin",    "apovitellin",    "cholesterol-free egg substitute",    "dried egg solids",    "egg",    "egg wash",    "eggnog",    "fat substitutes",    "globulin",    "livetin",    "lysozyme",    "mayonnaise",    "meringue",    "ovalbumin",    "ovoglobulin",    "ovomucin",    "ovomucoid",    "ovotransferrin",    "ovovitelia",    "ovovitellin",    "powdered eggs",    "silici albuminate",    "simplesse",    "surimi",    "trailblazer",    "vitellin",    "whole egg",    "dried egg",    "egg white",    "egg yolk",    "egg solids",    "meringue powder"],
     "sesame": ['benne', 'gingelly', 'gomasio', 'sesame flour', 'sesame oil', 'sesame paste', 'sesame salt', 'sesame seed', 'sesamol', 'sesemolina', 'sesamum indicum', 'sim sim', 'tahini, tahina, tehina', 'til', 'benne seed', 'benniseed', 'sesamum', 'sesame salt', 'gingelly oil'],
     "peanut": ['arachic oil', 'arachis', 'arachis hypogaea', 'artificial nuts', 'beer nuts', 'boiled peanuts', 'peanut oil', 'crushed nuts', 'earth nuts', 'goober peas', 'ground nuts', 'hydrolyzed peanut protein', 'mandelonas', 'mixed nuts', 'monkey nuts', 'nu nuts flavored nuts', 'nut pieces', 'nutmeat', 'peanuts', 'peanut flour', 'peanut paste', 'peanut sauce', 'spanish peanuts', 'virginia peanuts', 'crushed peanuts', 'ground peanuts', 'peanut butter', 'peanut butter chips', 'peanut butter morsels', 'peanut syrup'],
@@ -89,15 +214,31 @@ allergy_dict = {
 }
 
 
+
+
 def check_allergies(ingredients):
     allergies = []
     for allergen, allergen_ingredients in allergy_dict.items():
         for ingredient in allergen_ingredients:
-            if ingredient in ingredients.lower():
+            regex = r"\b" + re.escape(ingredient) + r"\b"
+            matches = re.finditer(regex, ingredients.lower())
+            for match in matches:
+                start_index = match.start()
+                end_index = match.end()
+                
+                # Find the prefix word
+                prefix_start_index = ingredients.rfind(' ', 0, start_index-2) + 1
+                prefix_word = ingredients[prefix_start_index:start_index].strip()
+                # print(match,prefix_word)
+                # Check if the neighboring words indicate exclusion
+                if (prefix_word.lower() == 'no' or prefix_word.lower() == 'without'):
+                    continue
+                # print(allergen)
                 allergies.append(allergen)
                 break
-    # print(allergies)
-    return allergies
+    unique_allergies = list(set(allergies))
+    return unique_allergies
+
 
 
 # check_allergies("CHEDDAR CHEESE AGED OVER 100 DAYS (CULTURED UNPASTEURIZED MILK, SALT, ENZYMES), WATER, WHEY, CREAM, TOMATO FLAKES, BASIL, LACTIC ACID. benne")
