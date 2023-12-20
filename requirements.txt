@@ -15,7 +15,8 @@ ipython
 object-detection
 django==4.2.5
 gunicorn
-
+typesense
+python-dotenv
 # matplotlib==2.1.1
 # six==1.11.0
 # opencv_contrib_python==4.3.0.36
